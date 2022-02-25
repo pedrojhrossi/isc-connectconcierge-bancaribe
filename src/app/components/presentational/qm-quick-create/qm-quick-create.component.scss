@@ -19,7 +19,7 @@
 
 .qm-create-button {
   &__item {
-    color: #E50046;
+    color: #0079C2;
     min-width: 35px;
     overflow: hidden;
     flex: 1;
@@ -117,7 +117,7 @@
       // line-height: 2.5em;
       font-size: 18px;
       text-align: left;
-      // margin: 0 15px;
+      margin-bottom: 0;
       @at-root [dir='rtl'] & {
         text-align: right;
       }
@@ -127,11 +127,14 @@
     }
   }
   &__item:hover {
-    background-color: rgba(0,0,0,0.04);
+    background-color: #ECFAE5;
     cursor: pointer;
+    border-radius: 100px;
   }
   &__item-selected {
-    background-color: rgba(0,0,0,0.04);
+    background-color: #ECFAE5;
+    border-radius: 100px;
+    font-family: 'Roboto-Medium';
   }
   &__button-container {
  
@@ -181,7 +184,7 @@
       margin: auto;
       font-size: 18px;
       border: 1px solid $dark-transparent12;
-      margin-bottom: 5px;
+      // margin-bottom: 5px;
       color: $dark-transparent82;
   }
   &__input:focus{
@@ -198,20 +201,19 @@
   &__search-container{
       display: flex;
       position: relative;
+      align-items: center;
   }
 
 }
 
 .qm-search__icon{
-
-  margin-top: 10px;
-  color: $dark-transparent62;
-  @at-root [dir="rtl"] & {
-    margin-right: -38px;
-  }
-  @at-root [dir="ltr"] & {
-    margin-left: -35px;
-  }
+  color: #74A6D5;
+  // @at-root [dir="rtl"] & {
+  //   margin-right: -38px;
+  // }
+  // @at-root [dir="ltr"] & {
+  //   margin-left: -35px;
+  // }
 }
 .qm-clear-search{ 
   
@@ -259,7 +261,7 @@
   width: 350px;
     z-index: 30;
     position: absolute;
-    margin-left: 51px;
+    margin-left: 65px;
     // margin-top: -87px;
     margin-bottom: 10px;
 
@@ -363,6 +365,9 @@ button:focus{
   
 }
 }
+.qm-checkbox__selector-icon-text {
+  margin-bottom: 0px;
+}
 
 
 @include qm-xs { 
@@ -450,7 +455,7 @@ button:focus{
 
 button:focus{
   i{
-  border:  solid #72a2f7 1px;
+  // border:  solid #72a2f7 1px;
 }
 }
 .qm-tooltip-btn:focus{
@@ -458,10 +463,10 @@ button:focus{
   outline: none !important;
 }
 .qm-checkbox:focus{
-  border:  solid #007bff 1px;
+  // border:  solid #007bff 1px;
 }
 .qm-quick-create__item-focus{
-  border:  solid #007bff 1px;
+  // border:  solid #007bff 1px;
 }
 
 .qm-checkbox__border {
@@ -509,7 +514,7 @@ button:active,button:hover{
   left: auto;
   top: 8px;
   right: -12px;
-  top: calc(50% - 4px);
+  top: calc(55% - 4px);
     left: auto;
     transform: translate(-50%,-50%);
   @at-root [dir="rtl"] & {

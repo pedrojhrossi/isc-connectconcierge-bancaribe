@@ -1,5 +1,7 @@
 .qm-search {
   position: relative;
+  display: flex;
+  align-items: center;
   &__input {
     width: 100%;
     border: 1px solid $standard-border-color;
@@ -7,10 +9,11 @@
     border-radius: 0;
     -webkit-border-radius: 0;
     -webkit-appearance: none;
-    padding: rem(10px 48px 10px 12px);
+    padding: rem(10px 48px 10px 20px);
     color: $dark-transparent82;
     font-size: 18px;
     line-height: rem(24px);
+    border-radius: 100px;
     font-weight: $font-weight-light;
     height: 48px;
     @at-root [dir='rtl'] & {
@@ -27,14 +30,11 @@
   }
 
   &__btn {
-    position: absolute;
-    right: rem($base-unit / 2);
-    top: 50%;
-    transform: translateY(-50%);
+    right: 0;
     color: $dark-transparent42;
     @at-root [dir='rtl'] & {
       right: auto;
-      left: rem($base-unit * 1.5);
+      left: 0;
     }
   }
 }

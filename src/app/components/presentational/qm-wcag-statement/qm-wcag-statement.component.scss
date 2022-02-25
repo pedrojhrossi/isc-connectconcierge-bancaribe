@@ -5,10 +5,11 @@
   @include qm-background;
 
   &__btn {
-    color: red;
+    color: #0079C2;
     font-size: 18px;
     margin-left: 10px;
     &:hover {
+      color: #175A83;
       font-weight: 500;
       cursor: pointer;
     }

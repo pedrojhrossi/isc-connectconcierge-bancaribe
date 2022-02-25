@@ -23,7 +23,7 @@
   // padding: 0px 4px;
   display: flex;
   align-items: center;
-  color: $toast-text-color;
+  color: rgba(0,0,0,0.9);
   border: 0;
   background: transparent;
   cursor: pointer;
@@ -47,7 +47,7 @@
     outline: none;
     font-weight: $font-weight-medium;
     &:before {
-      color: $toast-text-color;
+      color: rgba(0,0,0,0.9);
     }
   }
 }
@@ -60,6 +60,7 @@
   color: $toast-text-color;
   background: $tertiary-color;
   width: 100%;
+  border-radius: 4px;
   z-index: 3;
   margin: 0 auto;
 
@@ -114,7 +115,8 @@
 
   // Modifiers
   &--success {
-    background: $toast-success-background-color;
+    background: #D0F2BF;
+    color: rgba(0,0,0,0.9);
     .qm-toast-inner-container{
       .qm-toast-icon{
         i:before{
@@ -134,7 +136,17 @@
   }
 
   &--danger {
-    background: $toast-error-background-color;
+    background: #F5D8D8;
+    color:#A7363D ;
+    .qm-checkbox__selector-icon-text {
+      color:#A7363D !important;
+    }
+    .styled-checkbox + label:before {
+      border: 2px solid #A7363D !important;
+    }
+    .toast-close-button {
+      color:#A7363D !important;
+    }
     .qm-toast-inner-container{
       .qm-toast-icon{
         i:before{
@@ -146,7 +158,14 @@
   }
 
   &--info {
-    background: $toast-success-background-color;
+    background: #D0F2BF;
+    color: rgba(0,0,0,0.9);
+    .qm-checkbox__selector-icon-text {
+      color: rgba(0,0,0,0.9) !important;
+    }
+    .styled-checkbox + label:before {
+      border: 2px solid rgba(0,0,0,0.9) !important;
+    }
     .qm-toast-inner-container{
       .qm-toast-icon{
         i:before{
@@ -172,9 +191,9 @@
 
 
 
-#close-toast-btn:focus{
-  border:  solid #007bff 1px;
-}
+// #close-toast-btn:focus{
+//   border:  solid #007bff 1px;
+// }
 
 .toast{
   display: flex !important;

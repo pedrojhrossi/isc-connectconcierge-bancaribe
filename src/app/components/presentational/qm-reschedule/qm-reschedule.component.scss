@@ -161,7 +161,7 @@
     &--details {
       border: 1px solid #d5d5d5;
       background-color: #ffffff;
-      box-shadow: 2px 4px 4px 0 $dark-transparent04;
+      // box-shadow: 2px 4px 4px 0 $dark-transparent04;
       width: 60%;
       height: 56px;
       line-height: 56px;
@@ -267,7 +267,7 @@
 }
 
 .qm-time-header {
-  background: $secondary-color;
+  background: #3C817A;
   font-size: rem(21px);
   text-align: center;
   padding: 0.5rem;

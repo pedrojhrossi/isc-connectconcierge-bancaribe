@@ -1,13 +1,15 @@
 <div class="customer-search" dir="{{ userDirection$ | async }}">
   <div class="customer-search__parent">
     <label for="customerSearch" class="sr-only">{{ 'label.search_customer' | translate }}</label>
-    <input placeholder="{{ 'label.search_customer' | translate }}" class="qm-search__input" id="customerSearch" name="q" [ngModel]="searchText" #customerSearch (keydown.enter)="customerSearch.blur()" (input)="search(customerSearch.value)" autocomplete="off"> 
-      <div *ngIf="!customerSearch.value.trim()" class="qm-action-btn qm-action-btn--only-icon">
-        <i aria-hidden="true" class="qm-action-btn__icon icon-search qm-search__icon"></i>
-      </div>
+    <input placeholder="{{ 'label.search_customer' | translate }}" class="qm-search__input" id="customerSearch" name="q"
+      [ngModel]="searchText" #customerSearch (keydown.enter)="customerSearch.blur()"
+      (input)="search(customerSearch.value)" autocomplete="off">
+    <div  class="qm-action-btn qm-search__container">
+      <i *ngIf="!customerSearch.value.trim()" aria-hidden="true" class="qm-action-btn__icon icon-search qm-search__icon"></i>
       <button *ngIf="customerSearch.value.trim()" class="qm-action-btn--only-icon" (click)="resetSearch()">
-          <i aria-hidden="true" class="qm-action-btn__icon icon-close qm-close__icon" ></i>
-          <span class="sr-only">{{ 'button.clearSearch' | translate }}</span>
-      </button>      
+        <i aria-hidden="true" class="qm-action-btn__icon icon-close qm-close__icon"></i>
+        <span class="sr-only">{{ 'button.clearSearch' | translate }}</span>
+      </button>
+    </div>
   </div>
 </div>

@@ -1,3 +1,15 @@
+// Qmatic version 2 colors
+$q-green:#44CC00;
+$q-grey-warm:#63635E;
+$q-grey-cool:#E4ECF0;
+$q-turquoise-8:#DDE8E7;
+$q-turquoise:#3C817A;
+$q-input-icon:#74A6D5;
+$q-drop-down-background:#ECFAE5;
+$q-btn-active-blue: #0079C2;
+
+
+
 // Generic colors
 $midnight-blue: #1a1c34;
 $late-midnight-blue: rgba(26, 28, 51, 0.4);
@@ -33,6 +45,7 @@ $primary-text-color: $white;
 $black: #000000;
 $dark-transparent20: rgba(0, 0, 0, 0.20);
 $dark-transparent82: rgba(0, 0, 0, 0.82);
+$dark-transparent90: rgba(0, 0, 0, 0.90);
 $dark-transparent72: rgba(0, 0, 0, 0.72);
 $dark-transparent62: rgba(0, 0, 0, 0.62);
 $dark-transparent42: rgba(0, 0, 0, 0.42);
@@ -60,7 +73,7 @@ $primary-background-color:$midnight-blue;
 $standard-box-shadow: 0 2px 4px 0 $dark-transparent42;
 $heavy-box-shadow: 0 5px 8px 0 $dark-transparent42;
 // Header
-$header-background-color: $primary-color;
+$header-background-color: $white;
 $header-text-color: $white;
 $header-border-color: rgb(169, 2, 58);
 //Header branchName
@@ -81,36 +94,36 @@ $footer-text-color: $light-transparent50;
 // Buttons
 $button-disabled-color: $dark-transparent42;
 $button-disabled-border-color: #949494;
-$primary-button-background: $primary-pink;
+$primary-button-background: #0079C2;
 $primary-button-text-color: $white;
-$primary-button-border-color: $primary-pink;
-$primary-button-active-color: $black;
+$primary-button-border-color: #0079C2;
+$primary-button-active-color: #092231;
 $secondary-button-background: $white;
-$secondary-button-text-color: $primary-pink;
-$secondary-button-border-color: $primary-pink;
+$secondary-button-text-color: #0079C2;
+$secondary-button-border-color: #0079C2;
 $secondary-button-active-color: $dark-transparent82;
-$primary-action-button-color: $qmatic-bordeaux;
+$primary-action-button-color: $q-turquoise;
 $primary-action-button-active-color: $dark-transparent82;
 $primary-action-button-disabled-color: $dark-transparent42;
 $customer-count-btn-background-color: $white;
-$primary-label-color: $dark-transparent82;
+$primary-label-color: $dark-transparent62;
 $secondary-label-color: $dark-transparent42;
 
 //Check boxes
-$checkbox-color: $pale-aquamarine;
+$checkbox-color: $q-green;
 
 // Booking
 $list-item-selected-color: $light-aquamarine;
 $list-item-hover-color: $dark-transparent04;
 // Toasts
-$toast-success-background-color: #017c65;
+$toast-success-background-color: #3C817A;
 $toast-error-background-color: #b00020;
 $toast-info-background-color: #017c65;
 $toast-text-color: $white;
 // Print
 $print-border-color: $d-gray;
 // Textfields
-$disabled-background: $dark-transparent04;
+$disabled-background: #E8E8E8;
 $errorinput-border: $qmatic-bordeaux;
 //drop downs
 $drop-down-border-color: $medium-gray;
@@ -156,8 +169,5 @@ $timefilter-header : #929596;
 
 // Identify apointment gradient
 $workflow-blue-background : linear-gradient(-254deg, #32405C 4%, #40526E 38%, #374561 64%, #394561 78%, #484766 100%);
-
-
-
 
 

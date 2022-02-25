@@ -38,6 +38,26 @@ This document describes the new features, bug corrections, known issues and reco
 
 ----------
 -->
+
+
+----------
+
+<h2>Version 5.0.0</h2>
+
+**Date: 25/02/2021**
+ 
+**Build number: 5**
+
+<h3>Stories</h3>
+
+| **Id** | **Release notes** |
+| --- | --- |
+| **QP-11592** | **Re-branding Concierge webapp** |
+
+
+----------
+
+
 <h2>Version 4.2.0</h2>
 
 **Date: 08/02/2021**
@@ -65,6 +85,7 @@ This document describes the new features, bug corrections, known issues and reco
 | --- | --- |
 | **QP-11403** | **browser auto translation issue fixed** |
 | **QP-11611** | **Date of birth in edit customer is one day off if browser timezone is -7** |
+
 
 ----------
 

@@ -128,12 +128,12 @@
 }
 
 .qm-clear-search{ 
-    margin-left: -35px;
+    // margin-left: -35px;
     margin-top: 14px;
-    color: $dark-transparent42;
-    @at-root [dir="rtl"] & {
-      margin-right: -35px;
-    }
+    color: #74A6D5;
+    // @at-root [dir="rtl"] & {
+    //   margin-right: -35px;
+    // }
     font-size: 1.4em;
     cursor: pointer;
  
@@ -165,7 +165,7 @@
 
 .qm-search__icon{
     margin-top: -3px;
-    color: $dark-transparent62;
+    color: #74A6D5;
 
   }
 .qm-col-45{
@@ -187,7 +187,7 @@
 
     .icon-queue-first, .icon-queue-last, .icon-clock{
     font-size: 2.4em;
-    color: $primary-pink;
+    color: #0079C2;
     cursor: pointer;    
     }
     .icon-queue-first:hover, .icon-queue-last:hover, .icon-clock:hover{
@@ -199,16 +199,19 @@
 .qm-input-box-container{
     position: relative;
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 .qm-clear-btn {
-    position: absolute;
-    right: 10px;
-    margin-top: 12px;
-    border: none;
+    // position: absolute;
+    color: #74A6D5;
     background: transparent;
-    @at-root [dir="rtl"] & {
-        left: 10px;
-        right: auto;
-    }
+    border: none;
 }
 
+.qm-search__container { 
+    width: 38px;
+    height: 38px;
+    margin-left: -47px;
+    margin-top: -6px;
+}

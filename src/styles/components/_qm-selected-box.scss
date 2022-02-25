@@ -27,7 +27,7 @@
   &__bubble {	
     height: 32px;	
     width: 32px;	
-    background-color: #4D6599;
+    background-color: $q-input-icon;
     border-radius: 16px;
     display: inline-block;
     text-align: center;
@@ -48,6 +48,7 @@
   &__visitor-container {
     padding: 5px;
     margin: auto 5px;
+    border-radius: 100px;
     background: $dark-transparent04;
     display: flex;
     align-items: center;
@@ -61,8 +62,8 @@
     max-width: 48vw;
     height: rem(57px);
     border: 1px solid $dark-transparent12;
+    border-radius: 100px;
     background-color: $white;
-    box-shadow: 2px 4px 4px 0 $dark-transparent04;
     margin-left: 1rem;
     align-items: baseline;
     justify-content: space-between;
@@ -81,7 +82,7 @@
 
    .remove-icon {
       font-size: 20px;
-      color: #E50046;
+      color: #0079C2;
       -webkit-transform: translateY(10%);
       transform: translateY(10%);
       cursor: pointer;
@@ -97,7 +98,7 @@
 }
 .delete-icon {
   font-size: 30px;
-  color: #E50046;
+  color: #0079C2;
   -webkit-transform: translateY(10%);
   transform: translateY(10%);
   cursor: pointer;

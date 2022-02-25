@@ -231,7 +231,7 @@ input:focus{
 }
 
 .ng-select .ng-select-container {
-  border-radius: 0;
+  border-radius: 4px !important;
 }
 
 .ng-select .ng-arrow-wrapper {
@@ -245,7 +245,7 @@ input:focus{
 }
 
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
-  background-color: $dark-transparent04;
+  background-color: $q-drop-down-background;
 }
 
 .ng-select .ng-value-label {
@@ -261,6 +261,7 @@ input:focus{
 }
 
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  border-radius: 4px;
   font-weight: $font-weight-light;
   @at-root [dir='rtl'] & {
     text-align: right;
@@ -306,7 +307,8 @@ input:focus{
   border-radius: 4px;
   color: $white;
   margin: 0px 6px;
-  min-width: 150px;
+  min-width: 170px;
+  border-radius: 100px;
   height: 44px;
   text-align: center;
   white-space: nowrap;
@@ -319,8 +321,8 @@ input:focus{
 
 
 .qm-primary-button-disabled{
-  background: $dark-transparent42; 
-  border: 1px $dark-transparent42;
+  background: #E8E8E8; 
+  border: 1px #E8E8E8;
   font-weight: normal;
 }
 
@@ -331,18 +333,19 @@ input:focus{
 }
 
 .qm-primary-button-default:active{
-  background: black;
+  background: #092231;
   border: 1px $dark-transparent82;
   font-weight: 500;
 }
 .qm-primary-button-default{
-  background: $primary-pink;
-  border: 1px $primary-pink;
+  background: #0079C2;
+  border: 1px #0079C2;
   font-weight: normal;
 }
 .qm-primary-button-default:hover{
   font-weight: 500;
   cursor: pointer;
+  background: #175A83;
 }
 
 .qm-secondary-button-disabled{
@@ -359,12 +362,14 @@ input:focus{
 }
 .qm-secondary-button-defult{
   background: $white;
-  color: $primary-pink;
-  border: 1px $primary-pink solid;
+  color: #0079C2;
+  border: 1px #0079C2 solid;
   font-weight: normal;
 }
 .qm-secondary-button-defult:hover{
   background: $white;
+  color: #175A83;
+  border-color:#175A83;
   font-weight: 500;
   cursor: pointer;
 }
@@ -386,13 +391,13 @@ mark {
 
 input {
   -webkit-appearance: none !important;
-  border-radius: 0 !important;
+  border-radius: 100px;
 }
 
 input:focus{
-  border:  solid #72a2f7 1px !important;
+  // border:  solid #72a2f7 1px !important;
 }
 
 .ng-select-container:focus{
-  border:  solid #007bff 1px;
+  // border:  solid #007bff 1px;
 }

@@ -6,12 +6,12 @@
         <input class="qm-identify-visit-search__input" type="search"
           placeholder="{{ 'label.search_userPool' | translate }}" id="visitSearchPool" name="q" [ngModel]="searchText"
           (input)="handleInput($event)" #visitSearch autocomplete="off">
-        <button  *ngIf="visitSearch.value.trim()" class="qm-action-btn--only-icon qm-clear-btn">
+          <span class="qm-action-btn--only-icon qm-search__container">
+          <button  *ngIf="visitSearch.value.trim()" class="qm-action-btn--only-icon qm-clear-btn">
           <i  (click)="visitSearch.value = '';clearSearchText()"
             class=" qm-action-btn__icon icon-close qm-clear-search" aria-hidden="true"></i>
             <span class="sr-only">{{ 'button.clearSearch' | translate }}</span>
         </button >
-        <span class="qm-action-btn--only-icon qm-clear-btn">
           <i *ngIf="!visitSearch.value.trim()" aria-hidden="true"
             class="qm-action-btn__icon icon-search qm-search__icon"></i>
         </span>

@@ -28,9 +28,9 @@
             align-items: center;
             font-size: 1rem;
             cursor: pointer;
-            border-radius: 4px;
-            border: 1px solid $primary-pink;
-            color:  $primary-pink;
+            border-radius: 100px;
+            border: 1px solid $q-turquoise;
+            color:  $q-turquoise;
             background-color: $white;
         }
         &-button:hover{
@@ -97,7 +97,8 @@
 }
 
 .qm-time-header {
-    background: $secondary-color;
+    background: #3C817A;
+    border-radius: 16px 16px 0 0;
     color: $white;
     height: 3.25rem;
     font-size: 21px;
@@ -124,6 +125,7 @@
     margin: 48px 1.5rem 0rem 0rem;
     background-color: $white;
     border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 16px;
     @at-root [dir="rtl"] & {
         margin-right: 0;
         margin-left: 1.5rem;
@@ -154,6 +156,7 @@
 .qm-appointment-time-select-slots {
     margin: 47px 0rem 0rem 0rem;
     border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 16px 16px 0 0;
     position: relative;
 
     ::ng-deep .qm-time-slot-list {

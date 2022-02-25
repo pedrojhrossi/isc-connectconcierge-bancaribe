@@ -126,11 +126,13 @@
     }
   }
   &__item:hover {
+    background-color: #ECFAE5;
     background-color: rgba(0,0,0,0.04);
     cursor: pointer;
   }
   &__item-selected {
     background-color: rgba(0,0,0,0.04);
+    font-family: 'Roboto-Medium';
   }
   &__button-container {
  
@@ -429,7 +431,7 @@ button:focus{
 
 button:focus{
   i{
-  border:  solid #72a2f7 1px;
+  // border:  solid #72a2f7 1px;
 }
 }
 .qm-tooltip-btn:focus{
@@ -437,10 +439,10 @@ button:focus{
   outline: none !important;
 }
 .qm-checkbox:focus{
-  border:  solid #007bff 1px;
+  // border:  solid #007bff 1px;
 }
 .qm-quick-arrive__item-focus{
-  border:  solid #007bff 1px;
+  // border:  solid #007bff 1px;
 }
 
 .qm-checkbox__border {
@@ -519,7 +521,7 @@ button:active,button:hover{
 
 // qr-code-modal related css
 .qm-qr-code-modal
-{background: rgba(0, 0, 0, 0.6);
+{background: rgba(0, 0, 0, 0.5);
   height: 100vh;
   width: 100vw;
   position: fixed;
@@ -538,6 +540,7 @@ button:active,button:hover{
    margin-left: -15em;
    border: 1px solid #ccc;
    background-color: #f3f3f3;
+   border-radius: 24px;
   }
 
   &__heading{
@@ -553,9 +556,14 @@ button:active,button:hover{
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: center;
+    padding-left: 130px;
+    @at-root [dir="rtl"] & {
+      padding-right: 130px;
+    }
   }
   &__close-container{
-    color: $dark-transparent42;
+    color: #0079C2;
     padding: 25px;
     font-size: 1.8em;
     flex: 1;
@@ -746,12 +754,12 @@ button:active,button:hover{
 
 .visit-details-card{
   background-color: $white;
-  border-radius: 4px;
+  border-radius: 16px;
   padding: 0.75rem;
   margin-right: 10px;
   margin-left: 10px;
   overflow-y: auto;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+  // box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
   vertical-align: bottom;
   color: black;
 

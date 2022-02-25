@@ -1,25 +1,25 @@
 
 <div *ngIf="(editVisitEnable && !(this.canDelete == false && this.cancherypick == false && this.canSendSMS == false && this.canTransferSP == false && this.canTransferStaff == false &&
-(this.canTransferQ == false || (this.canTransferQ == true && this.canTransferQFirst == false && this.canTransferQLast == false && this.canTransferQWait == false))) )" style="display:flex" class="qm-search-visit-container qm-queue-summary__left" dir="{{ userDirection$ | async }}"    [ngClass]="{ 'summary-without-quickserve': !isQuickServeShow }">
+(this.canTransferQ == false || (this.canTransferQ == true && this.canTransferQFirst == false && this.canTransferQLast == false && this.canTransferQWait == false))) )" style="display:flex; align-items: center;" class="qm-search-visit-container qm-queue-summary__left" dir="{{ userDirection$ | async }}"    [ngClass]="{ 'summary-without-quickserve': !isQuickServeShow }">
   <span class="qm-search-box-container">
     <label for="visitSearchVisit" class="sr-only">{{ 'label.visit_search_placeholder' | translate }}</label>
   <input class="qm-identify-visit-search__input" type="search" placeholder="{{ 'label.visit_search_placeholder' | translate }}" id="visitSearchVisit"
   name="q" #visitSearch (input)="handleInput($event)" [(ngModel)]="inputText" (keydown.enter)="
       keyDownFunction($event, visitSearch.value.trim().toUpperCase())
     " autocomplete="off" />
-  <button *ngIf="visitSearch.value.trim()" class="qm-transparent-close-btn"  (click)="clearInput(); visitSearch.value = ''">
+  <!-- <button *ngIf="visitSearch.value.trim()" class="qm-transparent-close-btn"  (click)="clearInput(); visitSearch.value = ''">
     <i aria-hidden="true" class="qm-action-btn__icon icon-close qm-close__icon"></i>
     <span class="sr-only">{{ 'button.clearSearch' | translate }}</span>
-  </button>
+  </button> -->
 </span>
-  <div class="qm-action-btn--only-icon">
-    <i *ngIf="!visitSearch.value.trim()" aria-hidden="true" class="qm-action-btn__icon icon-search qm-search__icon"></i>
+  <div class="qm-action-btn--only-icon qm-search__container" (click)="searchVisit(visitSearch.value.trim().toUpperCase())">
+    <i  aria-hidden="true" class="qm-action-btn__icon icon-search qm-search__icon"></i>
   </div>
-  <button class="btn qm-button qm-primary-button-default qm-search-button btn-wrap" (click)="searchVisit(visitSearch.value.trim().toUpperCase())">
+  <!-- <button class="btn qm-button qm-primary-button-default qm-search-button btn-wrap" (click)="searchVisit(visitSearch.value.trim().toUpperCase())">
 
     {{'search'|translate}}
-  </button>
-  <button *ngIf="visitQR" (click)="SearchQRButtonClick()" class="btn scan-qr-container" [ngStyle]="{ color: !isQRReaderOpen ? '#E50046' : 'rgba(0, 0, 0, 0.82)' }">
+  </button> -->
+  <button *ngIf="visitQR" (click)="SearchQRButtonClick()" class="btn scan-qr-container" [ngStyle]="{ color: !isQRReaderOpen ? '#175A83' : 'rgba(0, 0, 0, 0.82)' }">
     <span>
     <i class="qm-action-btn__icon icon-scan-qr"></i>
     <span class="btn-wrap-qr">{{ "scan_qr" | translate }}</span>
@@ -49,10 +49,11 @@
 
 <div class="qm-queue-list-title" *ngIf="!selectedQueue && !selectedVisit">
   <h1 class="qm-queue-list-title__label-text">{{ "ql_queue_status_label" | translate }}</h1>
-  <ng-container *ngIf="!queueFetchFailed">
-    <span><i class="icon-customer-solid" aria-hidden="true"></i></span>
-    <span class="qm-queue-summary--value">{{ queueSummary.totalCustomersWaiting }} {{ "people_waiting_label" | translate
-      }}</span>
+  <ng-container *ngIf="!queueFetchFailed" >
+    <span class="qm-queue-summary--value">
+      <span><i class="icon-customer-solid" aria-hidden="true"></i></span>
+      <span >{{ queueSummary.totalCustomersWaiting }}</span>
+    </span>
   </ng-container>
 </div>
 

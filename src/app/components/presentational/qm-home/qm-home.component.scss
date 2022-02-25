@@ -14,7 +14,7 @@ $standard-home-margin : 1.5rem;
         min-height: 100%;
     
         // margin-left: $standard-home-margin;
-        background-color: #FAFAFA;       
+        background-color: #F9F9F9;       
         @at-root [dir="ltr"] & {
             // margin-left: auto;
             margin: auto;
@@ -142,6 +142,10 @@ $standard-home-margin : 1.5rem;
     
   }
   
+  .qm-expand-icon {
+    padding: 24px;
+    margin-top: -19px;
+  }
 
 .hr-queue{
     width: calc(100% - 95px);
@@ -168,7 +172,7 @@ $standard-home-margin : 1.5rem;
 
   .slide-icon:focus{
       .path3::before{
-    border:  solid #007bff 1px;
+    // border:  solid #007bff 1px;
 }
   }
   .qm-transparent-btn{

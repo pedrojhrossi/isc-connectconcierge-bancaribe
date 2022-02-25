@@ -4,7 +4,7 @@
 .qm-queue-list-title{
   
   display: flex;
-  color: $dark-transparent82;
+  color: $q-grey-warm;
   align-items: center;
   
   
@@ -18,13 +18,20 @@
   }
   span{
     vertical-align: middle;
+    padding: 0 5px;
    
   }
 }
 
+.qm-queue-summary--value {
+  background-color: $white;
+  border-radius: 16px;
+  padding: 2px 8px;
+  margin: 0 5px;
+}
+
 .icon-customer-solid{
   font-size: 1.5em;
-  margin: 5px;
   color: $dark-transparent82;
   vertical-align: middle;
 }
@@ -82,14 +89,14 @@ input:focus{
 color: $dark-transparent62;
 }
 .qm-search__icon{
-  position: absolute;
-  margin-top: 10px;
-  color: $dark-transparent62;
-  @at-root [dir="rtl"] & {
-    margin-right: -35px;
-} @at-root [dir="ltr"] & {
-  margin-left: -35px;
-}
+  // position: absolute;
+  // margin-top: 10px;
+  color: #0079C2;
+//   @at-root [dir="rtl"] & {
+//     margin-right: -35px;
+// } @at-root [dir="ltr"] & {
+//   margin-left: -35px;
+// }
 }
 
 .qm-loading-visits{
@@ -101,16 +108,13 @@ color: $dark-transparent62;
     margin: 12px 10px 0px 10px
   }
 }
-.qm-spinner{
-  // flex: 1;
-  // margin: 0 10px
-}
 
 
 .qm-action-btn--only-icon{
   width: 0px;
   vertical-align: middle;
   position: relative;
+  cursor: pointer;
 }
 
 input {
@@ -149,7 +153,7 @@ input {
 
 // qr-code-modal related css
 .qm-qr-code-modal
-{background: rgba(0, 0, 0, 0.6);
+{background: rgba(0, 0, 0, 0.5);
   height: 100vh;
   width: 100vw;
   position: fixed;
@@ -168,6 +172,7 @@ input {
    margin-left: -15em;
    border: 1px solid #ccc;
    background-color: #f3f3f3;
+   border-radius: 24px;
   }
 
   &__heading{
@@ -183,9 +188,14 @@ input {
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: center;
+    padding-left: 130px;
+    @at-root [dir="rtl"] & {
+      padding-right: 130px;
+    }
   }
   &__close-container{
-    color: $dark-transparent42;
+    color: #0079C2;
     padding: 25px;
     font-size: 1.8em;
     flex: 1;
@@ -384,7 +394,7 @@ hr{
     margin-top: 112px;
   }
   .qm-queue-list-title{
-    margin: 44px 48px 0 48px;
+    margin: 20px 48px 0 48px;
     &__label-text-captial{
       font-size: 21px;
       font-weight: 400;
@@ -441,10 +451,6 @@ hr{
   max-height: calc(100vh - 577px);
 }
 
-
-button:focus{
-  // border:  solid #007bff 1px;
-}
 .btn__content{
   width: 100%;
   height: 100%;
@@ -456,7 +462,7 @@ button:focus{
   padding: 0;
 }
 .btn:focus > .btn__content  {
-  border:  solid #72a2f7 1px;
+  // border:  solid #72a2f7 1px;
 } 
 
 .btn:focus ~ .btn__content:focus {
@@ -490,4 +496,13 @@ button:focus{
   text-overflow:ellipsis;
   max-width:135px;
   display:inline-block;
+}
+.qm-search__container {
+  background: #DEEDF6;
+    width: 40px;
+    height: 40px;
+    margin-left: -44px;
+    // border-radius: 100px;
+    display: flex;
+    justify-content: center;
 }

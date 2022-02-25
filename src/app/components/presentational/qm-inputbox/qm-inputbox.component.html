@@ -22,7 +22,7 @@
                   formControlName="firstName" maxlength="50" required
                   [ngClass]="{'invalid': customerCreateForm.get('firstName').touched && customerCreateForm.get('firstName').invalid}">
 
-                <button type="button" *ngIf="firstName.value.trim()" class="qm-clear-btn"
+                <button type="button" *ngIf="firstName.value.trim()" class="qm-clear-btn qm-search__container"
                   (click)="clearInputFeild('firstName')">
                   <i aria-hidden="true" class="qm-action-btn__icon icon-close qm-close__icon"></i>
                   <span class="sr-only">{{ 'button.clear' | translate }}</span>
@@ -50,7 +50,7 @@
                 [attr.aria-invalid]="customerCreateForm.get('lastName').touched && customerCreateForm.get('lastName').invalid"
                 formControlName="lastName" #lastName maxlength="50" required
                 [ngClass]="{'invalid': customerCreateForm.get('lastName').touched && customerCreateForm.get('lastName').invalid}">
-              <button type="button" *ngIf="lastName.value.trim()" class="qm-clear-btn"
+              <button type="button" *ngIf="lastName.value.trim()" class="qm-clear-btn qm-search__container"
                 (click)="clearInputFeild('lastName')">
                 <i aria-hidden="true" class="qm-action-btn__icon icon-close qm-close__icon"></i>
                 <span class="sr-only">{{ 'button.clear' | translate }}</span>
@@ -71,7 +71,7 @@
           <div class="qm-input-box-group">
             <input class="qm-input-box__input" type="text" id="email" name='email' formControlName="email" #email
               [attr.aria-invalid]="customerCreateForm.get('email').invalid">
-            <button type="button" *ngIf="email.value.trim()" class="qm-clear-btn" (click)="clearInputFeild('email')">
+            <button type="button" *ngIf="email.value.trim()" class="qm-clear-btn qm-search__container" (click)="clearInputFeild('email')">
               <i aria-hidden="true" class="qm-action-btn__icon icon-close qm-close__icon"></i>
               <span class="sr-only">{{ 'button.clear' | translate }}</span>
             </button>
@@ -91,7 +91,7 @@
                 <div class="qm-input-box-group">
                   <input class="qm-input-box__input" type="tel" inputmode="numeric" id="phone" name='phone'
                     formControlName="phone" #phone [attr.aria-invalid]="customerCreateForm.get('phone').invalid">
-                  <button type="button" *ngIf="phone.value.trim()" class="qm-clear-btn"
+                  <button type="button" *ngIf="phone.value.trim()" class="qm-clear-btn qm-search__container"
                     (click)="clearInputFeild('phone')">
                     <i aria-hidden="true" class="qm-action-btn__icon icon-close qm-close__icon"></i>
                     <span class="sr-only">{{ 'button.clear' | translate }}</span>

@@ -14,7 +14,7 @@
   }
 
   .qm-checkbox-label {
-    padding-right: 1rem;
+    padding-right: 0.5rem;
     z-index: 400;
   }
 
@@ -24,6 +24,7 @@
   .qm-list__item {
     position: relative;
     overflow: hidden;
+    border-radius: 4px;
   }
 
   .qm-flow-sub-header {
@@ -298,12 +299,16 @@
 
 
 .qm-service-list__item--text:focus{
-  border:  solid #007bff 1px;
+  // border:  solid #007bff 1px;
 }
 .qm-checkbox-focused{
-  border:  solid #007bff 1px;
+  // border:  solid #007bff 1px;
 }
 
+.icon-help {
+  font-size: 1.75rem !important;
+  padding-bottom: 7px;
+}
 ///Tempory: this can be removed after replacing the qm_list.scss file
 .icon-info , .icon-info-solid{
     position: relative;
@@ -321,6 +326,8 @@
 
 .qm-service-list__item--text{
   background-color: white;
+  border-radius: 50px;
+  outline-offset: -3px;
 }
 .qm-list__item{
  background: transparent; 
@@ -394,7 +401,7 @@
   }
 }
 [tabindex="-1"]:focus {
-  outline: solid #72a2f7 1px !important;
+  // outline: solid #72a2f7 1px !important;
 }
 .qm-transparent-btn{
   text-align: left;
@@ -421,6 +428,7 @@
   justify-content: center;
   height: 100%;
   background:#e7e7e7;
+  border-radius: 100px;
   padding: 0px 20px;
   &-input {
     height: 75%;
@@ -443,18 +451,18 @@
     font-size: 1rem;
     cursor: pointer;
     border-radius: 4px;
-    border: 1px solid $primary-pink;
-    color: $primary-pink;
+    border: 1px solid #0079C2;
+    color: #0079C2;
     width: 35px;
     background-color: #fff;
   }
   &-button:hover { 
-    border: 2px solid $primary-pink;
+    border: 2px solid #0079C2;
   }
   &-confirm-area {
     padding: 0 5px; 
     i{
-      color: $primary-pink;
+      color: #0079C2;
       margin: auto 5px;
       font-size: 1.1em;
     }
@@ -465,4 +473,13 @@
 }
 .visior-icon{
   font-size: 20px;
+}
+
+:host ::ng-deep .qm-clear-input-button {
+  background: #DEEDF6;
+  width: 40px;
+  height: 40px;
+  margin-left: -44px;
+  right: 5px;
+  border-radius: 100px;
 }

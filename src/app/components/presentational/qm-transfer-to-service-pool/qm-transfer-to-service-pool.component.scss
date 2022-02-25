@@ -150,7 +150,7 @@
 
 .qm-search__icon{
     margin-top: -3px;
-    color: $dark-transparent62;
+    color: #0079C2;
   }
 .icon-close{
     color: $dark-transparent62;
@@ -171,18 +171,26 @@
 .qm-input-box-container{
     position: relative;
     width: 100%;
+    display: flex;
 }
 .qm-clear-btn {
     position: absolute;
-    right: 10px;
-    margin-top: 12px;
+    right: 5px;
+    margin-top: 4px;
     border: none;
-    background: transparent;
     @at-root [dir="rtl"] & {
-        left: 10px;
+        left: 4px;
         right: auto;
     }
 }
+.qm-clr-btn {
+    background: transparent;
+    border: none;
+}
+.qm-search__container { 
+    width: 36px;
+    height: 36px;
+}
 [tabindex="-1"]:focus {
-    outline: solid #72a2f7 1px !important;
+    // outline: solid #72a2f7 1px !important;
   }

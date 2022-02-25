@@ -37,8 +37,8 @@
                 id="branchSearchInput" name="q" type="search" placeholder="{{'label.branch.search' | translate}}"
                 #branchSearchInput (keydown.enter)="branchInputEnterPressed();" autocomplete="off">
 
-              <div *ngIf="(searchText || '').trim().length === 0"
-                class="qm-action-btn qm-action-btn--only-icon qm-search__btn">
+              <div *ngIf="(searchText || '').trim().length === 0" 
+                class="qm-action-btn qm-action-btn--only-icon qm-search__btn qm-search__container">
                 <i aria-hidden="true" class="qm-action-btn__icon icon-search qm-search__icon"></i>
                 <span class="sr-only">Search</span>
               </div>

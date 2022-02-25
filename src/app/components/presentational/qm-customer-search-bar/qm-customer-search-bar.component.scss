@@ -22,17 +22,6 @@
         color: $dark-transparent62;
     }
 
-.qm-search__icon{
-    @at-root [dir="ltr"] & {
-        right: 0.4em;
-    }
-    @at-root [dir="rtl"] & {
-        left: 0.4em;
-    }
-    color:  $dark-transparent62;
-    z-index: 1000;
-    position: relative;
-}
 .qm-close__icon{
    
     color:  $dark-transparent42;
@@ -48,11 +37,8 @@
 .qm-action-btn--only-icon{
     background: transparent;
     border: none;
-    margin-top: 10px !important;
     position: absolute;
-    right: 10px;
     @at-root [dir="rtl"] & {
-        left: 10px;
         right: auto;
     }
 }
@@ -62,6 +48,7 @@
     margin:auto;
     display: flex;
     position: relative;
+    align-items: center;
 }
 
 .qm-search__icon{

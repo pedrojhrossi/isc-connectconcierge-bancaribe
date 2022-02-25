@@ -237,8 +237,8 @@ export class QmPageHeaderComponent implements OnInit, OnDestroy {
   }
 
   homeClick($event) {
-    $event.preventDefault();
-    window.location.href = APP_URL;
+    // $event.preventDefault();
+    // window.location.href = APP_URL;
   }
 
   hasValidLicense(): boolean {

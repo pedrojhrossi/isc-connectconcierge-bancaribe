@@ -19,6 +19,7 @@ $qm-btn-mod: (
       active-border-color: $black,
       disabled-background: $button-disabled-color,
       disabled-color: $white,
+      border-radius: 100px,
       disabled-border-color: $button-disabled-color)
 );
 
@@ -26,8 +27,8 @@ $qm-btn-mod: (
 .qm-btn {
   display: flex;
   border: 1px solid transparent;
-  padding: 8px rem($standard-padding * 2);
-  border-radius: rem($standard-border-radius);
+  padding: 10px rem($standard-padding * 2);
+  border-radius: 100px;
   justify-content: center;
   height: 44px;
   min-width: 150px;
@@ -101,7 +102,7 @@ $qm-btn-mod: (
         color: $active-color;
       }
       &[disabled] {
-        background: $disabled-bg;
+        background: #E8E8E8;
         border-color: $disabled-border-color;
         color: $disabled-text-color;
       }
@@ -141,7 +142,8 @@ $qm-btn-mod: (
 
 
 button:focus{
-  outline:  solid #72a2f7 1px;
+  outline:  solid rgba(0,0,0,0.6) 3px !important;
+  outline-offset: 2px;
 }
 
 button:active{

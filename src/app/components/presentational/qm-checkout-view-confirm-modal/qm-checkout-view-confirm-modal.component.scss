@@ -164,7 +164,7 @@
 
 .qm-popup-input{
     height: 44px;
-
+    border-radius: 4px;
     input.ng-invalid.ng-touched {
         border:solid $error-color 1px;
         color: $error-color;

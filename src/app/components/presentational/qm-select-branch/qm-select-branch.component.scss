@@ -12,6 +12,12 @@
 
 .qm-checkbox-label{
   z-index: 400;
+  @at-root [dir='rtl'] & {
+    padding-left: 7px;
+  }
+  @at-root [dir='ltr'] & {
+    padding-right: 7px;
+  }
 }
 
 .qm-select-branch {
@@ -28,6 +34,7 @@
     .qm-checkbox-label {
         padding-right: 1rem;
         z-index: 400;
+    
     }
 
   
@@ -123,10 +130,10 @@
       .triangle {
         
         @at-root [dir='ltr'] & {
-          left: 41%;
+          left: 19%;
         }
         @at-root [dir='rtl'] & {
-          right: 41%;
+          right: 19%;
       }
     }
   }}
@@ -175,7 +182,7 @@
     top:-22px;
    
     @at-root [dir='ltr'] & {
-      left: 16%;
+      left: 19%;
     }
     @at-root [dir='rtl'] & {
       right: 13%;
@@ -204,14 +211,14 @@
 }
 
 button:focus{
-    border:  solid #007bff 1px;
+    // border:  solid #007bff 1px;
   }
   
   input:focus{
-    border:  solid #007bff 1px;
+    // border:  solid #007bff 1px;
   }
   .qm-branch-list__item--text:focus{
-    border:  solid #007bff 1px; 
+    // border:  solid #007bff 1px; 
 }
 
 ///Tempory: this can be removed after replacing the qm_list.scss file
@@ -236,14 +243,17 @@ display: flex;
 
 .qm-list__item--text{
 background-color: white;
+// border-radius: 4px;
+  border-radius: 50px;
 width: calc(100% - 41px); 
+outline-offset: -1px;
 }
 .qm-list__item{
 background: transparent; 
 }
 
 .qm-checkbox-focused{
-  border:  solid #007bff 1px;
+  // border:  solid #007bff 1px;
 }
 
 .qm-list__item--label{
@@ -255,6 +265,11 @@ background: transparent;
 //     background: linear-gradient(to bottom, #ffffff 50%, #FAFAFB 62%);
 //     }
 // }
+
+.icon-help {
+  font-size: 1.75rem !important;
+  padding-bottom: 7px;
+}
 
 .qm-crossline-header-text{
   background: #fafafa;
@@ -312,4 +327,13 @@ background: transparent;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+:host ::ng-deep .qm-clear-input-button {
+  background: #DEEDF6;
+  width: 40px;
+  height: 40px;
+  margin-left: -44px;
+  right: 5px;
+  border-radius: 100px;
 }

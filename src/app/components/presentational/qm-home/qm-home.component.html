@@ -21,7 +21,7 @@
       <div class="qm-home-summary-area" *ngIf="isShowQueueView || editVisitEnable">
         <div class="icon-general" *ngIf="(isShowQueueView||editVisitEnable)">
           <!--  expand collapse button css-->
-          <button class="qm-transparent-btn" (click)="collapseBtnClicked()">
+          <button class="qm-transparent-btn qm-expand-icon" (click)="collapseBtnClicked()">
             <i class="action-btn slide-icon"
               [ngClass]="{ 'slide-collapesed': isCollapse,'icon-button-down': isCollapse,'icon-button-up': !isCollapse}">
               <span class="path1"></span>
@@ -33,8 +33,8 @@
           </button>
         </div>
         <qm-queue-summary [isQuickServeShow]="isQuickServeEnable || isQuickCreateEnable || isQuickArriveEnable"></qm-queue-summary>
-        <hr
-          [ngClass]="{ 'hr-queue': (!selelctedQueue && !selectedVisit),'hr-visit': (selelctedQueue || selectedVisit)}">
+        <!-- <hr
+          [ngClass]="{ 'hr-queue': (!selelctedQueue && !selectedVisit),'hr-visit': (selelctedQueue || selectedVisit)}"> -->
 
         <qm-queue-list isCollapesed="{{isCollapse}}" *ngIf="!selelctedQueue && !selectedVisit"></qm-queue-list>
         <qm-edit-visit-list isCollapesed="{{isCollapse}}" *ngIf="selelctedQueue || selectedVisit"></qm-edit-visit-list>

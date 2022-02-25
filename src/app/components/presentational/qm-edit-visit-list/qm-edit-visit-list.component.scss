@@ -72,7 +72,7 @@
 
     &-body-row {
         background-color: white;
-        color: black;
+        color: $q-grey-warm;
         align-items: center;
         box-shadow: 0 0 4px 0 $dark-transparent12;
         width: 100%;
@@ -183,7 +183,7 @@
         }
         .icon-close{
             cursor: pointer;
-            color: $primary-pink;
+            color: #0079C2;
             font-weight: 800;
         }
       
@@ -232,7 +232,7 @@
     .visit-tray-option {
         display: flex;
         flex-direction: column;
-        border: 1px solid $primary-pink;
+        border: 1px solid #0079C2;
         border-radius: 5px;
         width: 73%;
         margin: auto;
@@ -245,7 +245,7 @@
       
         .content {
             padding: 0 10px;
-            color: $primary-pink;
+            color: #175A83;
             letter-spacing: 0px;
             font-weight: 300;
             font-size: 18px;
@@ -281,7 +281,7 @@
       
         .content {
             padding: 0 10px;
-            color: $primary-pink;
+            color: #175A83;
             letter-spacing: 0px;
             font-weight: 300;
             font-size: 1.3em;
@@ -293,7 +293,7 @@
             flex:1;
             font-size: 1.8em;
             padding: 0px 10px;
-            color: $primary-pink; 
+            color: #0079C2; 
         }
         .label{
             flex: 10;
@@ -305,7 +305,7 @@
    
 }
 .visit-tray-option-bottom:focus{
-    border:  solid #007bff 1px;
+    // border:  solid #007bff 1px;
 }
 .visit-tray-option-bottom:active,
 .visit-tray-option-bottom:hover{
@@ -371,11 +371,11 @@
         }
         .icon-close{
             cursor: pointer;
-            color: $primary-pink;
+            color: #0079C2;
             font-weight: 800;
         }
         .icon-close:active,.icon-close:hover{
-            color: $dark-transparent82;
+            color: $q-grey-warm;
         }
     }
 
@@ -427,14 +427,18 @@
     }
     .visit-tray-option:hover{
         
-        .content {
-        font-weight: 500;
+        // border: 1px solid $q-green;
+        .content{
+            // color: $q-green;
+            font-weight: 800;
+
+        
     }}
 
     .visit-tray-option:active{
-        border: 1px solid $dark-transparent82;
+        // border: 1px solid $q-green;
         .content{
-            color: $dark-transparent82;
+            // color: $q-green;
 
         }
     }
@@ -461,7 +465,7 @@
         .spliter {
             width: 100%;
             height: 1px;
-            background: $primary-pink;
+            background: #0079C2;
         }
 
         .send-icon {
@@ -469,6 +473,10 @@
             border: none;
             display: flex;
             align-items: center;
+            color:#0079C2; 
+            &[disabled] {
+                color: rgba(0,0,0,0.12); 
+            }
         }
 
         .sms-loader {
@@ -496,7 +504,7 @@
     .visit-tray-option {
         display: flex;
         //flex-direction: column;
-        border: 1px solid $primary-pink;
+        border: 1px solid #0079C2;
         border-radius: 5px;
         width: 73%;
         margin: 30px auto;
@@ -518,7 +526,7 @@
         
         .content {
             padding: 0 10px;
-            color: $primary-pink;
+            color: #175A83;
             letter-spacing: 0px;
             font-weight: 300;
             font-size: 18px;
@@ -564,7 +572,7 @@
       
         .content {
             padding: 0 10px;
-            color: $primary-pink;
+            color:#175A83;
             letter-spacing: 0px;
             font-weight: 300;
             font-size: 18px;
@@ -579,7 +587,7 @@
             flex:1;
             font-size: 1.8em;
             padding: 0px 10px;
-            color: $primary-pink; 
+            color:#0079C2; 
         }
         .label{
             flex: 10;
@@ -611,7 +619,7 @@
   background-color: white;
   padding: 18px;
   width: 100%;
-  text-align: center;
+  text-align: start;
   color: $dark-transparent62;
   font-weight: 500;
 }
@@ -631,7 +639,7 @@
 
 .qm-first-element{
     margin-left: 15px;
-    color:$pale-aquamarine;
+    color: #175A83;
     font-weight: bold;
     @at-root [dir="rtl"] & {
         margin-right: 15px;
@@ -644,7 +652,7 @@
     font-weight: bold;
 }
 .qm-icon_back{
-    color: $primary-pink;
+    color:#0079C2;
     cursor: pointer;
     }
 
@@ -996,12 +1004,12 @@ button:focus{
     // border:  solid #007bff 1px;
 }
 .qm-visit-list-body-row:focus{
-    border:  solid #007bff 1px;
+    // border:  solid #007bff 1px;
 }
 .info-icon-container:focus{
     outline: none;
     i{
-        border:  solid #007bff 1px;
+        // border:  solid #007bff 1px;
     }
     
 }
@@ -1034,6 +1042,7 @@ button:focus{
         text-align: left;
         margin-top: -22px;
         box-shadow: -1px -1px 10px -2px rgba(0, 0, 0, 0.5);
+        border-radius: 4px;
 
         @at-root [dir="rtl"] & {
             text-align: right;

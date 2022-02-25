@@ -235,11 +235,11 @@
                 <span *ngIf="canCherryPick" class="visit-tray-option-bottom  visit-cherry-pick-btn"
                 [ngStyle]="{'cursor': dsOrOutcomeExists && canCherryPick ? '' : 'pointer'}" [ngClass]="{ 'visit-tray-option-bottom__extend' : canSendSMS && canTransferStaff && canTransferSP && (canTransferQ && (canTransferQFirst || canTransferQLast || canTransferQWait))}">
                   <button class="bottom-icon-container qm-transparent-btn"  (click)="cherryPickVisit(i,$event)">
-                    <span class="icon" [ngStyle]="{'color': dsOrOutcomeExists && canCherryPick ? '#bdbdbd' : '#E50046'}"> 
+                    <span class="icon" [ngStyle]="{'color': dsOrOutcomeExists && canCherryPick ? '#bdbdbd' : '#50ACA4'}"> 
                       <i *ngIf="userDirection === 'ltr' || userDirection === 'LTR'" class="icon-check" ></i>
                       <i *ngIf="userDirection === 'rtl' || userDirection === 'RTL'" class="icon-check-rtl" ></i>
                     </span>
-                    <span class="content btn-wrap-submit" [ngStyle]="{'color': dsOrOutcomeExists && canCherryPick ? '#bdbdbd' : '#E50046'}"> {{'serve'|
+                    <span class="content btn-wrap-submit" [ngStyle]="{'color': dsOrOutcomeExists && canCherryPick ? '#bdbdbd' : '#50ACA4'}"> {{'serve'|
                       translate}}
                     </span>
                   </button>

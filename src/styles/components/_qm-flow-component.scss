@@ -15,21 +15,18 @@
 
 .qm-flow-done-bar{
     z-index: 10000;
-    background-color: $white;
+    background-color: #F3F3F3;
     height: 80px;
     width: 100%;
     left:0;
     bottom: 0;
     position: fixed;
     display: flex;
-    
-    box-shadow: 1px -1px 14px 0px #888888;
-
-    &__done-button{
+      &__done-button{
       border: 0;
       font-family: $font-family !important;
-      background-color: $primary-pink;
-      border-radius: 4px;
+      background-color: #0079C2;
+      border-radius: 100px;
       color: $white;
       min-width:150px;
       text-align: center;
@@ -61,7 +58,7 @@
 .qm-pannel-container{
     margin: auto;
     overflow: auto;
-    background-image: $workflow-blue-background;
+    background: $white;
   }
 .qm-pannel-inner-container{
   max-width: 1288px;

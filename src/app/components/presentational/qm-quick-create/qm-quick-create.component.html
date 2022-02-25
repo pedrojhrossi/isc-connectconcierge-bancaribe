@@ -27,7 +27,7 @@
                 <div aria-live="assertive" aria-atomic="true" class="sr-only">
                         <span *ngIf="(services|filterQuickServeService:filterText).length > 0 && filterText.length > 0">{{ (services|filterQuickServeService:filterText).length + ((services|filterQuickServeService:filterText).length === 1 ? ('label.service.found' | translate) : ('label.services.found' | translate)) }}</span>
                     </div>
-                <div class="qm-action-btn--only-icon">
+                <div class="qm-action-btn--only-icon qm-search__container">
                     <i *ngIf="!visitSearch.value.trim()" aria-hidden="true" class="qm-action-btn__icon icon-search qm-search__icon"></i>
                 </div>
             </div>

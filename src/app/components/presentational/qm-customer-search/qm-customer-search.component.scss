@@ -5,7 +5,7 @@
     width:100%;
     touch-action: auto !important;
     font-weight: 300;
-
+    border-collapse: separate;
     :focus{
         outline: none; 
     }
@@ -57,7 +57,7 @@
         width: 99%;
         padding:0;
         margin: 6px;
-      
+        border-radius: 8px;
    
     }
     .customer-list:active{
@@ -77,7 +77,7 @@
       }
     .edit-button{
         font-size: 2em;
-        color:$primary-pink;
+        color:#175A83;
     }
     .edit-button:hover{
         // font-size: 2em;
@@ -120,16 +120,16 @@ tbody{
     max-height: 50vh;
     z-index: 200;
     background: white;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+    // box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
 }
 
 .qm-sub-row{
     font-size: 16px !important;
 }
 .customer-list:focus{
-    border:  solid #007bff 1px !important;
+    // border:  solid #007bff 1px !important;
 }
 
 .svg-container:focus{
-    border:  solid #007bff 1px;
+    // border:  solid #007bff 1px;
 }

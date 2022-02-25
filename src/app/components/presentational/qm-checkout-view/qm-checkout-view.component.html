@@ -138,9 +138,9 @@
       <div class="vip-label" [style.flex]="('label.vip_section' | translate).length > 6 ? 1.5: 1">{{ 'label.vip_section' | translate }}</div>
           <div class="radio-container">
             <div *ngIf="isVipLvl1Enabled" class="level" [ngClass]="{'vipButtonFocused':VipButton1Focucsed==true}">
-              <div class="checkbox-container" [ngStyle]="{'border': vipLevel1Checked ? '3px solid #017C65' : '3px solid rgba(0,0,0,0.62)'}">
+              <div class="checkbox-container" [ngStyle]="{'border': vipLevel1Checked ? '3px solid #3C817A' : '3px solid rgba(0,0,0,0.62)'}">
                 <input class="checkbox" type="checkbox" id="vip_lvl_1" [ngModel]="vipLevel1Checked" (click)="onVip1Clicked()"  (focus)="VipButton1Focucsed=true"  (focusout)="VipButton1Focucsed=false">
-                <label class="label" for="vip_lvl_1" [ngStyle]="{'background': vipLevel1Checked ? '#017C65' : 'transparent'}">
+                <label class="label" for="vip_lvl_1" [ngStyle]="{'background': vipLevel1Checked ? '#3C817A' : 'transparent'}">
                   <span class="sr-only">{{ 'label.vip_section' | translate }} {{ 'vip_one_label' | translate }}</span>
                 </label>
               </div>
@@ -148,9 +148,9 @@
             </div>
     
             <div *ngIf="isVipLvl2Enabled" class="level" [ngClass]="{'vipButtonFocused':VipButton2Focucsed}">
-              <div class="checkbox-container" [ngStyle]="{'border': vipLevel2Checked ? '3px solid #017C65' : '3px solid rgba(0,0,0,0.62)'}">
+              <div class="checkbox-container" [ngStyle]="{'border': vipLevel2Checked ? '3px solid #3C817A' : '3px solid rgba(0,0,0,0.62)'}">
                 <input class="checkbox" type="checkbox" id="vip_lvl_2" [ngModel]="vipLevel2Checked" (click)="onVip2Clicked()" (focus)="VipButton2Focucsed=true"  (focusout)="VipButton2Focucsed=false">
-                <label class="label" for="vip_lvl_2" [ngStyle]="{'background': vipLevel2Checked ? '#017C65' : 'transparent'}">
+                <label class="label" for="vip_lvl_2" [ngStyle]="{'background': vipLevel2Checked ? '#3C817A' : 'transparent'}">
                     <span class="sr-only">{{ 'label.vip_section' | translate }} {{ 'vip_two_label' | translate }}</span>
                 </label>
               </div>
@@ -158,9 +158,9 @@
             </div>
     
             <div *ngIf="isVipLvl3Enabled" class="level" [ngClass]="{'vipButtonFocused':VipButton3Focucsed}">
-              <div class="checkbox-container" [ngStyle]="{'border': vipLevel3Checked ? '3px solid #017C65' : '3px solid rgba(0,0,0,0.62)'}">
+              <div class="checkbox-container" [ngStyle]="{'border': vipLevel3Checked ? '3px solid #3C817A' : '3px solid rgba(0,0,0,0.62)'}">
                 <input class="checkbox" type="checkbox" id="vip_lvl_3" [ngModel]="vipLevel3Checked" (click)="onVip3Clicked()" (focus)="VipButton3Focucsed=true"  (focusout)="VipButton3Focucsed=false">
-                <label class="label" for="vip_lvl_3" [ngStyle]="{'background': vipLevel3Checked ? '#017C65' : 'transparent'}">
+                <label class="label" for="vip_lvl_3" [ngStyle]="{'background': vipLevel3Checked ? '#3C817A' : 'transparent'}">
                     <span class="sr-only">{{ 'label.vip_section' | translate }} {{ 'vip_three_label' | translate }}</span>
                 </label>
               </div>

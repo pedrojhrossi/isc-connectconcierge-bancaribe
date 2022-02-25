@@ -173,6 +173,9 @@ qm-identify-appointment{
     .qm-search--large {
       width: 100%;
       margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: baseline;
     }
 
     qm-customer-search-bar {
@@ -216,14 +219,14 @@ qm-identify-appointment{
       }
 
       ::ng-deep .qm-action-btn--only-icon {
-        margin-top: 16px;
+        // margin-top: 16px;
       }
     }
 
     qm-customer-search {
       width: 90%;
       position: relative;
-      top: 56px;
+      top: 48px;
 
       ::ng-deep .customer-not-found--feedback {
         border: 1px solid rgba(0, 0, 0, 0.12);
@@ -269,7 +272,7 @@ qm-identify-appointment{
     }
 
     &__close-btn {
-      color: $primary-pink;
+      color: #175A83;
       font-size: 14px;
       &:hover {
         cursor: pointer;
@@ -318,45 +321,52 @@ qm-identify-appointment{
 
   &__pannel-button {
     background-color: $white;
-    box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.22);
-    color: $dark-transparent82;
+    // box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.22);
+    color: #175A83;
     padding: 15px 35px;
     border-radius: 4px 4px 0px 0px;
     cursor: pointer;
     display: flex;
     align-items: center;
     border: 1px solid transparent;
-
+    
     &:hover, &:focus {
-      color: $pale-aquamarine;
-      border: 1px solid  $pale-aquamarine;
+      color: #0079C2;
+      border: 1px solid  #0079C2;
+      outline-offset: 0;
+    }
+    &:active { 
+      color: #175A83;
     }
     @include qm-xs-lower {
       padding: 15px 10px;
+    }
+    i{
+      color: #0079C2;
     }
   }
 
  
 
   &__pannel-button:focus {
-       border:  solid #007bff 1px !important;
+      //  border:  solid #007bff 1px !important;
   }
 
   &__pannel-middle-button {
     margin: 0px 12px;
   }
   &__pannel-button-selected {
-    background-color: $pale-aquamarine;
-    color: $white;
+    background-color: #C8E1F1;
+    color: rgba(0,0,0,0.9);
 
     &:hover, &:focus {
-      color: $white;
-      border: 1px solid $pale-aquamarine;
+      // color: $white;
+      border: 1px solid #0079C2;
     }
   }
   &__pannel-bottom-bar {
     margin-top: 0;
-    border-top: 2px solid $pale-aquamarine;
+    border-top: 2px solid #0079C2;
   }
 
   &__pannel-header {
@@ -374,7 +384,7 @@ qm-identify-appointment{
   }
   &__time-container {
     padding: 0px 10px;
-    color: $pale-aquamarine;
+    color: #175A83;
     display: flex;
     cursor: pointer;
     &:hover {
@@ -385,7 +395,7 @@ qm-identify-appointment{
     }
   }
   &__time-container:focus{
-    border:  solid #007bff 1px !important;
+    // border:  solid #007bff 1px !important;
   }
 
   &__refresh-button {
@@ -477,7 +487,8 @@ qm-identify-appointment{
       display: flex;
       width: 100%;
       background-color: #ffffff;
-      box-shadow: 2px 4px 4px 0 $dark-transparent04;
+      // box-shadow: 2px 4px 4px 0 $dark-transparent04;
+      border-radius: 4px;
       // border: 1px solid $listitem-border-color;
       font-size: 16px;
       color: $dark-transparent82;
@@ -523,7 +534,7 @@ qm-identify-appointment{
       }
     }
     &__list:focus{
-      border:  solid #007bff 1px;
+      // border:  solid #007bff 1px;
     }
   }
 }
@@ -532,7 +543,7 @@ qm-identify-appointment{
   margin-top: 3px;
 }
 .qm-action-btn__icon:focus{
-  border:  solid #007bff 1px;
+  // border:  solid #007bff 1px;
 }
 .qm-info-icon-button{
   height: 30px;
@@ -561,7 +572,7 @@ qm-identify-appointment{
   text-align: center;
   cursor: pointer;
   margin-left: 1.5rem;
-  margin-top: -0.8rem;
+  margin-top: 0px;
 
   @at-root [dir='rtl'] & {
     margin-right: 1.5rem;
@@ -571,7 +582,7 @@ qm-identify-appointment{
 
 // qr-code-modal related css
 .qm-qr-code-modal {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
   height: 100vh;
   width: 100vw;
   position: fixed;
@@ -588,6 +599,7 @@ qm-identify-appointment{
     margin-left: -15em;
     border: 1px solid #ccc;
     background-color: #f3f3f3;
+    border-radius: 24px;
   }
 
   &__heading {
@@ -602,12 +614,14 @@ qm-identify-appointment{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: center;
+    padding-left: 130px;
     @at-root [dir="rtl"] & {
-      text-align: right;
+      padding-right: 130px;
     }
   }
   &__close-container {
-    color: $dark-transparent42;
+    color: #0079C2;
     padding: 25px;
     font-size: 1.8em;
     flex: 1;
@@ -628,7 +642,7 @@ qm-identify-appointment{
   }
   &__done-icon {
     padding: 0px 10px;
-    color: $pale-aquamarine;
+    color: $q-turquoise;
   }
   &__text-line {
     color: $dark-transparent82;
@@ -649,7 +663,7 @@ qm-identify-appointment{
 .qm-pannel-container {
   &__identify {
     height: 100%;
-    background-image: $workflow-blue-background;
+    // background: $q-grey-cool;
 
     &--edit {
       //table column sizes
@@ -756,6 +770,7 @@ qm-identify-appointment{
 
     &--arrive {
       .qm-table {
+     
         @include qm-lg {
           &__header-id, &__cell-id {
             flex: 1;
@@ -820,7 +835,7 @@ qm-identify-appointment{
             line-height: $sm-xs-row-height;
           }
         }
-
+       
       
         &__header-id, &__cell-id {
           flex: 1;
@@ -858,6 +873,12 @@ qm-identify-appointment{
   }
 }
 
+.qm-identify-appointment__appointment-table__header {
+    button:focus{
+      outline-offset: 0;
+    }
+
+}
 
 .qm-appointment-info{
   display: none;
@@ -867,7 +888,7 @@ display: initial;
 }
 button:focus{
   outline: none;
-  border: 1px solid #72a2f7; 
+  // border: 1px solid #72a2f7; 
 }
 
 .qm-appointments-loading {
@@ -925,6 +946,7 @@ button:focus{
   background: #fafafa;
   height: calc(100% - 90px);
   padding: 30px 24px;
+  border-radius: 35px;
 }
 
 .btn-wrap {

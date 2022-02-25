@@ -16,7 +16,7 @@
       button {
         height: 44px;
         width: 100px;
-        border-radius: 4px;
+        border-radius: 100px;
         font-size: 18px;
         font-weight: 300;
         color: #FFFFFF;
@@ -34,11 +34,11 @@
 
       .btn-plain {
         background: $white;
-        border: 1px solid $primary-pink;
+        border: 1px solid #0079C2;
         background-color: $white;
         font-size: 18px;
         font-weight: $font-weight-light;
-        color: $primary-pink;
+        color: #0079C2;
         cursor: pointer;
       }
       .btn-plain:active{

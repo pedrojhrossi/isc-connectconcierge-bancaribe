@@ -74,7 +74,7 @@
 }
 
 .qm-checkbox__border{
-    border: 1px solid rgba(0,0,0,0.62);
+    border: 1px solid rgba(0,0,0,0.42);
     border-radius: 7px;
     width: 27px;
     height: 27px;
@@ -101,7 +101,7 @@
   }
   // Box.
   & + label:before {
-    border: 3px solid rgba(0, 0, 0, 0.54);
+    border: 3px solid rgba(0, 0, 0, 0.42);
     content: '';
     margin-right: 10px;
     display: inline-block;
@@ -119,9 +119,9 @@
   }
 
   &:checked + &:hover + label:before {
-    background: #017c65;
+    background: #175A83;
     border:none;
-    box-shadow: 0 0 0 3px rgba(1,124,101,0.12)
+    box-shadow: 0 0 0 3px #E4ECF0
   }
   
   // Box focus
@@ -132,7 +132,7 @@
   // Box checked
   &:checked + label:before {
     border:none;
-    background: #017c65;    
+    background: #175A83;    
   }
 
   
@@ -176,7 +176,7 @@
 }
 
 .qm-check-box-background{
-  background: #017c65;
+  background: $q-green;
   border-radius: 44px;
   width: 40px;
   height: 40px;

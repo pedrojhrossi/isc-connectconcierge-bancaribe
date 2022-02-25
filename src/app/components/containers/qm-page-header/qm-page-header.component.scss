@@ -15,7 +15,7 @@
   justify-content: space-between;
   background: $header-background-color;
   padding: rem(0 24px);
-
+  color: rgba(0,0,0,0.9);
 
   &__left {
     display: flex;
@@ -29,26 +29,31 @@
     text-align: right;
     align-items: center;
     min-width: 0;
+    color: $q-grey-warm;
+
   }
 
   @mixin top-bar-button-common {
     height: 27px;
-    color: $light-transparent50;
+    color: $q-grey-warm;
 
     .qm-action-btn__icon {
       font-size: rem(26px);
     }
 
     &:visited {
-      color: $light-transparent50;
+      color: $q-grey-warm;
     }
 
     &:hover,
     &:focus,
     &:active {
-      color: $white;
+      color: $q-grey-warm;
       text-decoration: none;
     }
+  }
+  &__home-btn {
+    padding: 0 10px;
   }
 
   &__home-btn,
@@ -104,11 +109,11 @@
 
   &__brand-logo {
     width: 95px;
-    margin-left: 1rem;
-    @at-root [dir="rtl"] & {
-      margin-left: 0;
-      margin-right: 1rem;
-    }
+    // margin-left: 1rem;
+    // @at-root [dir="rtl"] & {
+    //   margin-left: 0;
+    //   margin-right: 1rem;
+    // }
   }
 
   &__application-name {
@@ -116,7 +121,6 @@
     align-self: center;
     font-size: rem(21px);
     line-height: rem(27px);
-    color: $white;
     margin-left: rem($standard-margin);
 
     @at-root [dir="rtl"] & {
@@ -144,6 +148,7 @@
 
   &__service-point-name {
     flex: 1 1 auto;
+    font-weight: 500;
     color: $header-service-point-name-color;
     white-space: nowrap;
     overflow: hidden;
@@ -171,7 +176,7 @@
   }
 
   &__edit-link:hover {
-    color: $white;
+    color: #666666;
     cursor: pointer;
   }
   // Right side
@@ -181,7 +186,7 @@
 
   &__user-name {
     flex: 1 1 auto;
-    color: $light-transparent75;
+    // color: $light-transparent75;
     // margin: rem(0 $standard-margin / 2);
     font-size: 16px;
     @include add-text-ellipsis;
@@ -225,8 +230,8 @@ button:active,button:hover{
     display: block;
     padding: 0;
     font-size: 1.125rem;
-    background: linear-gradient(254.96deg,#32405c 0,#40526e 34.9%,#374561 62.87%,#394561 77.12%,#484766 100%);
-    color: #fff;
+    background: #E4ECF0;
+    color: rgba(0,0,0,0.9);;
     position: absolute!important;
     width: 1px;
     height: 1px;
@@ -235,7 +240,7 @@ button:active,button:hover{
   }
   &__link:focus{
     padding: .9375rem 1rem;
-    color: #fff;
+    color: rgba(0,0,0,0.9);
     position: static!important;
     height: auto;
     width: auto;

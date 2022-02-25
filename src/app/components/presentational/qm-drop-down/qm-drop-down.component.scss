@@ -27,9 +27,11 @@
 
    .qm-dd-search {
         padding: 1rem;
-        ::ng-deep .qm-search__btn {
-            right: 1.5rem;
-        }
+        display: flex;
+        align-items: center;
+        // ::ng-deep .qm-search__btn {
+        //     right: 1.5rem;
+        // }
     }
 
     &-button {
@@ -44,6 +46,7 @@
         display: flex;
         padding: 1rem;
         cursor: pointer;
+        border-radius: 20px;
         
         &--arrow {
             color: black;
@@ -110,10 +113,19 @@
             }
 
             &:hover {
-                background-color:$light-gray4;
+                background-color:$q-drop-down-background;
                 width: 100%;
+                border-radius: 100px;
             }
             @include add-text-ellipsis;
         }
     }
 }
+:host ::ng-deep .qm-clear-input-button {
+    background: #DEEDF6;
+    width: 40px;
+    height: 40px;
+    margin-left: -44px;
+    right: 5px;
+    border-radius: 100px;
+  }

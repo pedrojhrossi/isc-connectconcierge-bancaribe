@@ -14,7 +14,8 @@
   color: $dark-transparent82;
   background: $white;
   border: 1px solid $dark-transparent12;
-  box-shadow: 0 4px 8px 0 $dark-transparent20;
+  border-radius: 4px;
+  // box-shadow: 0 4px 8px 0 $dark-transparent20;
   z-index: 1051;
   width: 542px;
   max-height: 432px;
@@ -138,6 +139,8 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      color: #175A83;
+
       &:hover {
         cursor: pointer;
         color: $dark-transparent82

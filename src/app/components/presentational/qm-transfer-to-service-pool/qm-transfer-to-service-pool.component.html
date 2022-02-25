@@ -7,14 +7,17 @@
         <input class="qm-identify-visit-search__input" type="search"
           placeholder="{{ 'label.search_spPool' | translate }}" id="spSearch" name="q" [ngModel]="searchText"
           (input)="handleInput($event)" #spSearch autocomplete="off">
-        <button class="qm-action-btn--only-icon qm-clear-btn" *ngIf="spSearch.value.trim()"
-          (click)="spSearch.value = '';clearSearchText()">
-          <i class=" qm-action-btn__icon icon-close" aria-hidden="true"></i>
-          <span class="sr-only">{{ 'button.clearSearch' | translate }}</span>
-        </button>
-        <span class="qm-action-btn--only-icon qm-clear-btn" *ngIf="!spSearch.value.trim()">
-          <i aria-hidden="true" class="qm-action-btn__icon icon-search qm-search__icon"></i>
+          
+          
+          <span class="qm-action-btn--only-icon qm-clear-btn qm-search__container">
+             <button class="qm-action-btn--only-icon qm-clr-btn" *ngIf="spSearch.value.trim()"
+               (click)="spSearch.value = '';clearSearchText()">
+               <i class=" qm-action-btn__icon icon-close" aria-hidden="true"></i>
+                <span class="sr-only">{{ 'button.clearSearch' | translate }}</span>
+             </button>
+          <i aria-hidden="true" *ngIf="!spSearch.value.trim()" class="qm-action-btn__icon icon-search qm-search__icon"></i>
         </span>
+        
         <div *ngIf="(servicePoints | filterServicePoints : filterText).length === 0" aria-live="assertive" role="alert" class="sr-only">{{ 'counter_list_not_found' | translate }}</div>
         <div *ngIf="(servicePoints | filterServicePoints : filterText).length > 0 && filterText.length > 0" aria-live="assertive" role="alert" class="sr-only">{{ (servicePoints | filterServicePoints : filterText).length + ((servicePoints | filterServicePoints : filterText).length === 1 ? ('label.counter.found' | translate) : ('label.counters.found' | translate)) }}</div>
       </div>

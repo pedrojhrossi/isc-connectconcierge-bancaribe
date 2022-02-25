@@ -6,7 +6,7 @@
   &__item {
     cursor: pointer;
     background-color: $white;
-    margin-top: 0.5rem;
+    margin-top: 2px;
 
     &--info {
       font-size: 18px;
@@ -35,12 +35,10 @@
     }
 
     &--text {
-      box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.04);
-     
       width: 100%;
       min-height: 48px;
       font-size: 18px;
-      color: rgba(0, 0, 0, 0.82);
+      color: #175A83;
       font-weight: 300;
       padding: 8px 1rem;
    
@@ -60,7 +58,7 @@
         background-color: transparent;
       }
       &:hover {
-        background-color: $dark-transparent04;
+       text-decoration: underline;
       }
 
     }
@@ -69,7 +67,7 @@
     }
 
     .icon-info , .icon-info-solid{
-      color: $icon-color-default;
+      color:  $dark-transparent42;
       position: absolute;
       right: -45px;
       transform: translateY(-50%);

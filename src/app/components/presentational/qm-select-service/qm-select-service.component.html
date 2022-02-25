@@ -50,7 +50,7 @@
                     name="serviceSearchInput" placeholder="{{'label.service.search' | translate}}" #serviceSearchInput
                     (keydown.enter)="ServiceSearchInputEnterPressed()">
                   <div *ngIf="(searchText || '').trim().length === 0"
-                    class="qm-action-btn qm-action-btn--only-icon qm-search__btn">
+                    class="qm-action-btn qm-action-btn--only-icon qm-search__btn qm-search__container">
                     <i aria-hidden="true" class="qm-action-btn__icon icon-search qm-search__icon"></i>
                     <span class="sr-only">Search</span>
                   </div>

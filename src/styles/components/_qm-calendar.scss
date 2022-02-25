@@ -117,10 +117,10 @@ $calendar-border :  1px solid rgba(0,0,0,0.12);
 
     &.today {
       background-color: $white;
-      border: 1px solid $secondary-color;
+      // border: 1px solid #3C817A;
     }
     &.selected {
-      background-color: $secondary-color;
+      background-color: #3C817A;
       color: $primary-text-color;
       font-weight: 500;
     }
@@ -140,9 +140,9 @@ $calendar-border :  1px solid rgba(0,0,0,0.12);
     }
 
     &:hover:not(:empty) {
-      border: 1px solid $dark-transparent12;
+      // border: 1px solid $dark-transparent12;
       background-color: rgba(0,0,0,0.04);
-      box-shadow: 0 4px 4px 0 rgba(0,0,0,0.04);
+      // box-shadow: 0 4px 4px 0 rgba(0,0,0,0.04);
     }
 
   }

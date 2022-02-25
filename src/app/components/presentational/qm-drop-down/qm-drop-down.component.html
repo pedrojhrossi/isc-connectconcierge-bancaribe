@@ -12,7 +12,7 @@
                 class="qm-search__input ng-pristine ng-valid ng-touched "
             id="{{getIdofInputBox(searchPlaceHolder)}}" name="q" type="search" placeholder="{{ searchPlaceHolder | translate}}" autocomplete="off" role="searchbox">
     
-          <span *ngIf="(searchText || '').trim().length === 0" class="qm-action-btn qm-action-btn--only-icon qm-search__btn">
+          <span *ngIf="(searchText || '').trim().length === 0" class="qm-action-btn qm-action-btn--only-icon qm-search__btn qm-search__container">
             <i aria-hidden="true" class="qm-action-btn__icon icon-search qm-search__icon"></i>
             <span class="sr-only">{{'search'| translate}}</span>
           </span>

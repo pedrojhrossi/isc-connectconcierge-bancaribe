@@ -9,11 +9,12 @@
         <input class="qm-identify-visit-search__input" type="search"
           placeholder="{{ 'label.search_queue' | translate }}" id="queuevisitSearch" name="q" [ngModel]="searchText"
           (input)="handleInput($event)" #visitSearch autocomplete="off">
-        <button class="qm-action-btn--only-icon qm-clear-btn" *ngIf="visitSearch.value.trim()"
+        
+        <span class="qm-action-btn--only-icon qm-search__container">
+          <button class="qm-action-btn--only-icon qm-clear-btn" *ngIf="visitSearch.value.trim()"
           (click)="visitSearch.value = '';clearSearchText()">
           <i class=" qm-action-btn__icon icon-close " aria-hidden="true"></i>
         </button>
-        <span class="qm-action-btn--only-icon qm-clear-btn">
           <i *ngIf="!visitSearch.value.trim()" aria-hidden="true"
             class="qm-action-btn__icon icon-search qm-search__icon"></i>
             <span class="sr-only">{{ 'button.clearSearch' | translate }}</span>

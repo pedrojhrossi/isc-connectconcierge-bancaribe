@@ -5,7 +5,7 @@
       <div role="columnheader" scope="col" class="qm-queue-list-header-item qm-col-45 qm-flex-grid"
         (click)="onSortClickbyQueue()">
         <div class="qm-queue-list-header-item">{{'label.ql_queue' | translate}}</div>
-        <button class="qm-transparent-btn"><i class="sort-icon"
+        <button class="qm-transparent-btn order-btn"><i class="sort-icon"
             [ngClass]="{'icon-caret-up': sortAscending !== true, 'icon-caret-down': sortAscending ===  true,'selected-sort-icon':sortedBy =='Queue' }"></i>
           <span
             class="sr-only qm-queue-list-header-sr">{{ sortAscending ? ('button.sortASC' | translate) : ('button.sortDES' | translate) }}</span>
@@ -15,7 +15,7 @@
       <div role="columnheader" scope="col" class="qm-queue-list-header-item qm-col-15 qm-flex-grid"
         (click)="onSortClickbyWaitingCustomers()">
         <div class="qm-queue-list-header-item-label">{{'label.ql_customer' | translate}}</div>
-        <button class="qm-transparent-btn"><i class="sort-icon"
+        <button class="qm-transparent-btn order-btn"><i class="sort-icon"
             [ngClass]="{'icon-caret-up': sortAscending === true, 'icon-caret-down': sortAscending !==  true,'selected-sort-icon':sortedBy =='WaitingCustomers' }"></i>
           <span
             class="sr-only qm-queue-list-header-sr">{{ sortAscending ? ('button.sortASC' | translate) : ('button.sortDES' | translate) }}</span>
@@ -25,7 +25,7 @@
       <div role="columnheader" scope="col" class="qm-queue-list-header-item qm-col-15 qm-flex-grid"
         (click)=" onSortClickbyMaxWaitTime()">
         <div class="qm-queue-list-header-item-label"> {{ 'label.wait_time' | translate}} </div>
-        <button class="qm-transparent-btn"><i class="sort-icon"
+        <button class="qm-transparent-btn order-btn"><i class="sort-icon"
             [ngClass]="{'icon-caret-up': sortAscending === true, 'icon-caret-down': sortAscending !==  true,'selected-sort-icon':sortedBy =='MaxWaitTime' }"></i>
           <span
             class="sr-only qm-queue-list-header-sr">{{ sortAscending ? ('button.sortASC' | translate) : ('button.sortDES' | translate) }}</span>

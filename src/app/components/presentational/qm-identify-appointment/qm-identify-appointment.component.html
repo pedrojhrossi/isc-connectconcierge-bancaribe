@@ -102,7 +102,7 @@
           <button (click)="onSearchButtonClick('qr')" role="tab" id="qr"
             attr.aria-selected="{{ currentSearchState === 'qr' }}" *ngIf="qrButtonVisible"
             class="scan-qr-container qm-transparent-btn btn-wrap-qr" [ngStyle]="{
-            color: !isQRReaderOpen ? '#E50046' : 'rgba(0, 0, 0, 0.82)'
+            color: !isQRReaderOpen ? '#175A83' : 'rgba(0, 0, 0, 0.82)'
           }">
             <i class="qm-action-btn__icon icon-scan-qr"></i>
             <span class="qm-scan-text">{{ "scan_qr" | translate }}</span>
@@ -129,23 +129,23 @@
             <div class="qm-identify-appointment__search-area">
               <div class="qm-search qm-search--large">
                 <label for="searchAppointmentField" class="sr-only">{{'label.identify.appointment.searchbookingid' | translate}}</label>
-                <input [(ngModel)]="searchText" pattern="searchFieldValidation" #clearInputDirective="qmClearInputRef" qmClearInput
+                <input [(ngModel)]="searchText" pattern="searchFieldValidation"
                   class="qm-search__input" name="serviceSearchInput" type="tel"
                   placeholder="{{
                   'label.identify.appointment.searchbookingid' | translate
                 }}" [formControl]="searchInputController" id="searchAppointmentField" />
 
-                <div *ngIf="(searchText || '').trim().length === 0"
-                  class="qm-action-btn qm-action-btn--only-icon qm-search__btn">
-                  <i aria-hidden="true"
-                    class="qm-action-btn__icon icon-search qm-search__icon qm-search-customer-icon"></i>
+                <div (click)="onEnterPressed()"
+                  class="qm-action-btn qm-action-btn--only-icon qm-search__btn qm-search__container">
+                  <i aria-hidden="true" style="font-size: 1.75rem;;"
+                    class="icon-search qm-search__icon qm-search-customer-icon"></i>
                   <span class="sr-only">Search</span>
               </div>
               </div>
 
-              <button (click)="onEnterPressed()" [disabled]="searchText.length === 0 || !searchFieldValidation()" class="qm-btn qm-btn--primary btn-wrap">
+              <!-- <button (click)="onEnterPressed()" [disabled]="searchText.length === 0 || !searchFieldValidation()" class="qm-btn qm-btn--primary btn-wrap">
                 {{ "label.identify.appointment.fetch" | translate }}
-              </button>
+              </button> -->
 
               <div style="color: black;">{{ tempText }}</div>
             </div>

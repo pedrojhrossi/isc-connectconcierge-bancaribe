@@ -76,6 +76,9 @@
    background-color: transparent;
  }
 
+ /* Remove outline for non-keyboard :focus */
+
+
  /**
    * 1. Remove the bottom border in Chrome 57-
    * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
@@ -187,11 +190,11 @@
    overflow: visible;
  }
 
- input[type="text"], input {
-  border-radius: 0;
-  -webkit-appearance: none;
-  -webkit-border-radius:0px;
-}
+//  input[type="text"], input {
+//   border-radius: 0;
+//   -webkit-appearance: none;
+//   -webkit-border-radius:0px;
+// }
 
  /**
    * Remove the inheritance of text transform in Edge, Firefox, and IE.
