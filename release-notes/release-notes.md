@@ -53,6 +53,7 @@ This document describes the new features, bug corrections, known issues and reco
 | **Id** | **Release notes** |
 | --- | --- |
 | **QP-11592** | **Re-branding Concierge webapp** |
+| **QP-11740** | **Re-branding Changes** |
 
 
 ----------
