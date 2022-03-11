@@ -1,11 +1,11 @@
 
-<h1>Release notes Orchestra Concierge 4.1.0</h1>
+<h1>Release notes Orchestra Concierge 5.0.1</h1>
 
 ----------
 
 <h2>Introduction</h2>
 
-This document describes the new features, bug corrections, known issues and recommendations for Orchestra Concierge 4.1.0. If you want to know about connector changes details or similar, this document is for you.
+This document describes the new features, bug corrections, known issues and recommendations for Orchestra Concierge 5.0.1. If you want to know about connector changes details or similar, this document is for you.
 
 **Note:** Several of the remarks refer to a Jira number (Jira is Qmatic&#39;s internal registration system for bugs), or Pivotal Tracker (internal system for improvements and other issues).
 
@@ -39,6 +39,18 @@ This document describes the new features, bug corrections, known issues and reco
 ----------
 -->
 
+
+<h2>Version 5.0.1</h2>
+
+**Date: 11/03/2021**
+ 
+**Build number: 1**
+
+<h3>Stories</h3>
+
+| **Id** | **Release notes** |
+| --- | --- |
+| **CONCI-1318** | **Default settings for concierge in Visit Manager** |
 
 ----------
 

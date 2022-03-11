@@ -43,6 +43,7 @@ export class QmHomeMenuComponent implements OnInit, OnDestroy {
   isArriveAppointment = false;
   isEditAppointment = false;
   isCreateAppointment = false;
+  isVisitManager = false;
   isEditQCAAppointment = false;
   isCreateQCAAppointment = false;
   userDirection$: Observable<string>;
@@ -84,6 +85,12 @@ export class QmHomeMenuComponent implements OnInit, OnDestroy {
     const hostAddressSub = this.systemInfoSelectors.systemInfoHostAddress$.subscribe(hostAddress => {
       this.hostAddressStr = hostAddress;
     });
+    const systemInfoscriptions = this.systemInfoSelectors.systemInfo$.subscribe(sysInfo => {
+      if (sysInfo) {
+        this.isVisitManager = sysInfo.productName == "Visit Manager" ? true : false;
+      }
+    });
+    this.subscriptions.add(systemInfoscriptions);
     this.subscriptions.add(hostAddressSub);
     this.checkUserPermissions();
     this.checkUttPermissions();
@@ -174,8 +181,8 @@ export class QmHomeMenuComponent implements OnInit, OnDestroy {
       }
 
       if (this.isAppointmentUser && uttpParams) {
-        this.isCreateAppointment = uttpParams[CREATE_APPOINTMENT];
-        this.isEditAppointment = uttpParams[EDIT_APPOINTMENT];
+        this.isCreateAppointment = uttpParams[CREATE_APPOINTMENT] && !this.isVisitManager;
+        this.isEditAppointment = uttpParams[EDIT_APPOINTMENT] && !this.isVisitManager;
         this.isArriveAppointment = uttpParams[ARRIVE_APPOINTMENT];
 
         this.isNative = this.nativeApi.isNativeBrowser();
