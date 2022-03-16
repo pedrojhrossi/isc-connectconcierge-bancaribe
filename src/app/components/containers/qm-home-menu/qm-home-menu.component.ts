@@ -85,12 +85,10 @@ export class QmHomeMenuComponent implements OnInit, OnDestroy {
     const hostAddressSub = this.systemInfoSelectors.systemInfoHostAddress$.subscribe(hostAddress => {
       this.hostAddressStr = hostAddress;
     });
-    const systemInfoscriptions = this.systemInfoSelectors.systemInfo$.subscribe(sysInfo => {
-      if (sysInfo) {
-        this.isVisitManager = sysInfo.productName == "Visit Manager" ? true : false;
-      }
+    const visitManagerSubscriptions = this.systemInfoSelectors.isVisitManager$.subscribe(val => {
+      this.isVisitManager = val;
     });
-    this.subscriptions.add(systemInfoscriptions);
+    this.subscriptions.add(visitManagerSubscriptions);
     this.subscriptions.add(hostAddressSub);
     this.checkUserPermissions();
     this.checkUttPermissions();
@@ -98,7 +96,7 @@ export class QmHomeMenuComponent implements OnInit, OnDestroy {
     
     this.isNative = this.nativeApi.isNativeBrowser();
 
-    if (this.isAppointmentUser && (this.isCreateAppointment || this.isEditAppointment) && this.hostAddressStr) {
+    if (this.isAppointmentUser && !this.isVisitManager && (this.isCreateAppointment || this.isEditAppointment) && this.hostAddressStr) {
       this.calendarBranchDispatcher.fetchCalendarBranches();
     }
 
@@ -118,7 +116,9 @@ export class QmHomeMenuComponent implements OnInit, OnDestroy {
     const JWTTokenSubscriptions = this.jwtTokenSelectors.jwtToken$.subscribe(token => {
       if (token !== '') {
         this.isJWTTokenLoad = true;
-        this.calendarBranchDispatcher.fetchCalendarBranches();
+        if (!this.isVisitManager){
+          this.calendarBranchDispatcher.fetchCalendarBranches();
+        }
       }
     });
     this.subscriptions.add(JWTTokenSubscriptions);

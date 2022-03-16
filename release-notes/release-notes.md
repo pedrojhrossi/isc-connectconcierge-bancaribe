@@ -43,7 +43,7 @@ This document describes the new features, bug corrections, known issues and reco
 
 **Date: 25/02/2021**
  
-**Build number: 3**
+**Build number: 4**
 
 <h3>Stories</h3>
 
@@ -52,6 +52,7 @@ This document describes the new features, bug corrections, known issues and reco
 | **QP-11592** | **Re-branding Concierge webapp** |
 | **QP-11740** | **Re-branding Changes** |
 | **CONCI-1318** | **Default settings for concierge in Visit Manager** |
+| **CONCI-981** | **Change endpoint when fetching branches** |
 
 ----------
 

@@ -29,6 +29,11 @@ const getSystemInfoProductVersion = createSelector(
   (state: ISystemInfo) => state.productVersion
 );
 
+const isVisitManager = createSelector(
+  getSystemInfo,
+  (state: ISystemInfo) => state.productName == "Visit Manager" ? true : false
+);
+
 const getSystemInfoLicenseCompanyName = createSelector(
   getSystemInfo,
   (state: ISystemInfo) => state.licenseCompanyName
@@ -87,4 +92,5 @@ export class SystemInfoSelectors {
   authorizationHeader$ = this.store.select(getAuthorizationHeader);
   timeConvention$ = this.store.select(getTimeConvention);
   dateConvention$ = this.store.select(getDateConvention);
+  isVisitManager$ = this.store.select(isVisitManager);
 }
