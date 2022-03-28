@@ -128,7 +128,14 @@ export class QmNotesComponent implements OnInit, OnDestroy {
 
   toggleNotesInput() {
     this.notesInputOpened = !this.notesInputOpened;
-    const modal = this.modalService.openNotesModal(decodeURIComponent(this.notes));
+    var notes = '';
+    try {
+      notes = decodeURIComponent(this.notes);
+    }
+    catch(err) {
+       notes = this.notes;
+    }
+    const modal = this.modalService.openNotesModal(notes);
     modal.result.then((value)=> {
       if(value !== null) {
         this.onNotesChanged.emit(value);
@@ -137,6 +144,12 @@ export class QmNotesComponent implements OnInit, OnDestroy {
   }
   
   URIDecorder(val) {
-    return decodeURIComponent(val);
+    try {
+      return decodeURIComponent(val);
+    }
+    catch(err) {
+      return (val);
+    }
+    
   }
 }

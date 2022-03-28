@@ -23,8 +23,8 @@ export class SystemInfoDataService {
 
   getSystemInfo(): Observable<ISystemInfo> {
     return this.http
-      // .get<ISystemInfo>(`${restEndpoint}/managementinformation/systemInformation`)
-      .get<ISystemInfo>(`${restEndpoint}/servicepoint/systemInformation`)
+      .get<ISystemInfo>(`${restEndpoint}/managementinformation/systemInformation`)
+      // .get<ISystemInfo>(`${restEndpoint}/servicepoint/systemInformation`)
       .pipe();
   }
 

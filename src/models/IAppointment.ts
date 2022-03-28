@@ -30,6 +30,7 @@ export interface IAppointment {
   properties?: {
     notes?: string;
     custom?: string; 
+    publicId?: string
   }
   showInfo?: boolean;
   resourceServiceDecorators?: any;

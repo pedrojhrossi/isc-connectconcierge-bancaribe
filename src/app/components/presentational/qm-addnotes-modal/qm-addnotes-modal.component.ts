@@ -28,7 +28,7 @@ export class QmAddnotesModalComponent implements OnInit {
   }
 
   addNotes() {
-    this.notes = encodeURIComponent(this.notes.toString());  
+    this.notes = (this.notes.toString());  
     this.activeModal.close(this.notes);
   }
 
@@ -37,6 +37,6 @@ export class QmAddnotesModalComponent implements OnInit {
   }
 
   decline() {
-    this.activeModal.close(encodeURIComponent(this.currentNote));
+    this.activeModal.close((this.currentNote));
   }
 }

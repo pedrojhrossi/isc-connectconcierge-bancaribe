@@ -39,6 +39,30 @@ This document describes the new features, bug corrections, known issues and reco
 ----------
 -->
 
+
+----------
+
+<h2>Version 5.0.1</h2>
+
+**Date: 25/02/2021**
+ 
+**Build number: 5**
+
+<h3>Stories</h3>
+
+| **Id** | **Release notes** |
+| --- | --- |
+| **CONCI-1329** | **Apply encoded related changes into the core version** |
+
+
+<h3>Bug fixes</h3>
+
+| **Id** | **Release notes** |
+| --- | --- |
+| **CONCI-13212** | **Sending incorrect stat events for appointment origin** |
+
+----------
+
 <h2>Version 5.0.0</h2>
 
 **Date: 25/02/2021**

@@ -110,6 +110,11 @@ export class QmAppointmentInfoComponent implements OnInit, AfterViewInit, OnDest
     this.subscriptions.unsubscribe();
   }
   URIDecorder(val) {
-    return decodeURIComponent(val);
+    try {
+      return decodeURIComponent(val);
+    }
+    catch(err) {
+      return (val);
+    }
   }
 }

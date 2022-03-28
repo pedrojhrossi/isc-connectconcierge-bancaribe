@@ -84,17 +84,17 @@ export class CalendarService implements OnDestroy {
       );
   }
 
-  setAppointmentStatEvent(appointment: IAppointment) {
+  setAppointmentStatEvent(appointment: IAppointment,type?:String) {
     const statEventBody = {
       'applicationName': 'Concierge',
-      'event': 'CREATE/UPDATE/DELETE'
+      'event': type
     };
     return this.http
       .post
       (`${appointmentEndPoint}/branches/${appointment.branch.id}/appointments/${appointment.qpId}/events/APP_ORIGIN`,
         statEventBody)
       .pipe(
-        catchError(this.errorHandler.handleError())
+        catchError(this.errorHandler.handleError(true))
       );
   }
 

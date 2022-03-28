@@ -42,6 +42,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { QueueService } from "../../../../util/services/queue.service";
 import { DEFAULT_LOCALE } from "src/constants/config";
 import { ISystemInfo } from "src/models/ISystemInfo";
+import { CalendarService } from "src/util/services/rest/calendar.service";
 
 enum RescheduleState {
   Default = 1,
@@ -72,6 +73,8 @@ export class QmRescheduleComponent implements OnInit, OnDestroy {
   isOriginalAppointmentTimeChanged = false;
   isDateSelected: boolean = false;
   isShowExpandedAppointment: boolean = false;
+  isAppointmentStatEventEnable = false;
+  
   dateType: string;
   currentDate: string = '';
   timeConvention: string = "24";
@@ -103,6 +106,7 @@ export class QmRescheduleComponent implements OnInit, OnDestroy {
     private reserveDispatchers: ReserveDispatchers,
     private calendarServiceSelectors: CalendarServiceSelectors,
     private timeSlotDispatchers: TimeslotDispatchers,
+    private calendarService: CalendarService,
     private qmModalService: QmModalService,
     private reservationExpiryTimerDispatchers: ReservationExpiryTimerDispatchers,
     private appointmentDispatchers: AppointmentDispatchers,
@@ -173,6 +177,7 @@ export class QmRescheduleComponent implements OnInit, OnDestroy {
           this.isRescheduleEnabledInUtt = uttParameters.reSheduleAppointment;
           this.isDeleteEnabledInUtt = uttParameters.delAppointment;
           this.hideCustomerdetails = uttParameters.hideCustomerDetails;
+          this.isAppointmentStatEventEnable = uttParameters.appointmentStatEnable ? uttParameters.appointmentStatEnable : false;
         }
       })
       .unsubscribe();
@@ -280,6 +285,21 @@ export class QmRescheduleComponent implements OnInit, OnDestroy {
     );
   }
 
+  
+  setAppointmentStatEvent(result,type) {
+    if (this.isAppointmentStatEventEnable) {
+      // console.log(result)
+      // this.calendarService.fetchAppointmentQP((result as IAppointment).publicId).subscribe(appointmentRes => {
+      //   const qpAppointment = (appointmentRes as any).appointment;
+      //   console.log(qpAppointment)
+      //   if (qpAppointment.qpId) {
+          this.calendarService.setAppointmentStatEvent(result,type).subscribe(res => { }, err => { });
+      //   }
+      // }, error => { });
+    }
+  }
+
+
   onCancelAppointment() {
     this.isDateSelected = false;
 
@@ -290,13 +310,27 @@ export class QmRescheduleComponent implements OnInit, OnDestroy {
       "label.no",
       result => {
         if (result) {
-          this.appointmentDispatchers.deleteAppointment(
-            this.editAppointment,
-            () => {
-              this.showCancelAppointmentSuccessMessage();
-            },
-            () => {}
-          );
+          this.calendarService.setAppointmentStatEvent(this.editAppointment,'DELETE').subscribe(res => { 
+            this.appointmentDispatchers.deleteAppointment(
+              this.editAppointment,
+              () => {
+            
+                this.showCancelAppointmentSuccessMessage();
+              },
+              () => {}
+            );
+          }, err => { 
+            console.log('error');
+            this.appointmentDispatchers.deleteAppointment(
+              this.editAppointment,
+              () => {
+                this.showCancelAppointmentSuccessMessage();
+              },
+              () => {}
+            );
+          });
+
+   
           this.onFlowExit.next(true);
           this.queueService.fetechQueueInfo();
         }
@@ -364,8 +398,11 @@ export class QmRescheduleComponent implements OnInit, OnDestroy {
             this.appointmentSelectors.rescheduleProgress$.subscribe(
               progress => {
                 if (progress === true) {
+              rescheduleAppointment
+              this.setAppointmentStatEvent(rescheduleAppointment,'UPDATE')
                   this.onFlowExit.next(true);
                   this.queueService.fetechQueueInfo();
+
                 }
                 else if(progress === false) {
                   this.getTimeSlots();

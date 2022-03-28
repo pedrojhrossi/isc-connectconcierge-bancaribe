@@ -699,7 +699,7 @@ export class QmCheckoutViewComponent implements OnInit, OnDestroy {
             this.showSuccessMessage(result);
             this.onFlowExit.emit();
             this.queueService.fetechQueueInfo();
-            this.setAppointmentStatEvent(result);
+            this.setAppointmentStatEvent(result,'CREATE');
           }
         }, error => {
           const err = new DataServiceError(error, null);
@@ -728,12 +728,12 @@ export class QmCheckoutViewComponent implements OnInit, OnDestroy {
     }
   }
 
-  setAppointmentStatEvent(result) {
+  setAppointmentStatEvent(result,type) {
     if (this.isAppointmentStatEventEnable) {
-      this.calendarService.fetchAppointmentQP((result as IAppointment).publicId).subscribe(appointmentRes => {
+      this.calendarService.fetchAppointmentQP((result as IAppointment).publicId?(result as IAppointment).publicId: (result as IAppointment).properties.publicId).subscribe(appointmentRes => {
         const qpAppointment = (appointmentRes as any).appointment;
         if (qpAppointment.qpId) {
-          this.calendarService.setAppointmentStatEvent(qpAppointment).subscribe(res => { }, err => { });
+          this.calendarService.setAppointmentStatEvent(qpAppointment,type).subscribe(res => { }, err => { });
         }
       }, error => { });
     }
@@ -782,6 +782,8 @@ export class QmCheckoutViewComponent implements OnInit, OnDestroy {
         this.loading = false;
         this.showSuccessMessage(result);
         this.saveFrequentService();
+        console.log(this.selectedAppointment)
+        this.setAppointmentStatEvent(this.selectedAppointment, 'UPDATE')
         this.onFlowExit.emit();
         this.queueService.fetechQueueInfo();
       }, error => {

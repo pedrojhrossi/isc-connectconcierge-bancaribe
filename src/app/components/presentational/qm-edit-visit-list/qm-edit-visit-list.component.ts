@@ -302,7 +302,12 @@ export class QmEditVisitListComponent implements OnInit, OnDestroy {
   }
 
   getVisitNote(visit: Visit) {
-    return decodeURIComponent(visit.parameterMap.custom1);
+    try {
+      return decodeURIComponent(visit.parameterMap.custom1);
+    }
+    catch(err) {
+      return (visit.parameterMap.custom1);
+    }
   }
 
   getShowPriResource(): boolean {
