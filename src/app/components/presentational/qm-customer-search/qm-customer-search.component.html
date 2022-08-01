@@ -1,20 +1,22 @@
 <table class="customer-table" dir="{{ userDirection$ | async }}" >
   <tbody *ngIf="customers.length!=0" class="tbody">
-     <tr  class="customer-list" *ngFor="let customer of customers;let j = index" 
+     <tr  class="customer-list" *ngFor="let customer of customers;let j = index"
      id="{{j}}-customer"
      [attr.tabindex]=" j==0 ? 0 : -1"
      (keydown.arrowdown)="onDownButttonPressed(j)"
-     (keydown.arrowup)="onUpButttonPressed(j)"(keydown.enter)="selectCustomer(customer) ; f.customerCreateForm.markAsPristine()" 
+     (keydown.arrowup)="onUpButttonPressed(j)"(keydown.enter)="selectCustomer(customer) ; f.customerCreateForm.markAsPristine()"
      (keydown.arrowright) = "onRightButttonPressed(j)"
      (keydown.arrowleft) = "onLeftButttonPressed(j)"
      (keydown.space)="selectCustomer(customer)">
-       
+
       <td style="width: 1%" (click)="selectCustomer(customer) ; f.customerCreateForm.markAsPristine()" ></td>
       <td style="width: 23%"  (click)="selectCustomer(customer) ; f.customerCreateForm.markAsPristine()"> <div class="search-list-text" [innerHtml]="customer.firstName +' ' + customer.lastName  | qmhighlight: searchText"> </div> </td>
+      <!-- PJHR -->
+      <td style="width: 23%" (click)="selectCustomer(customer); f.customerCreateForm.markAsPristine()" > <div class="search-list-text qm-sub-row" [innerHtml]="customer.properties.externalId  | qmhighlight: searchText"> </div></td>
       <td style="width: 23%" (click)="selectCustomer(customer); f.customerCreateForm.markAsPristine()" > <div class="search-list-text qm-sub-row" [innerHtml]="customer.properties.email  | qmhighlight: searchText"> </div></td>
       <td style="width: 23%" (click)="selectCustomer(customer); f.customerCreateForm.markAsPristine()"><div class="search-list-text qm-sub-row" [innerHtml]="customer.properties.phoneNumber  | qmhighlight: searchText"> </div></td>
       <td style="width: 23%" (click)="selectCustomer(customer); f.customerCreateForm.markAsPristine()"> <div *ngIf="customer.properties.dateOfBirth" class="search-list-text qm-sub-row" [innerHtml]="prepareDOB(customer.properties.dateOfBirth)  | qmhighlight: searchText"> </div></td>
-      <td style="width: 7%" *ngIf="isCustomerEditable" (click)="selectCustomer(customer); f.customerCreateForm.markAsPristine()"> 
+      <td style="width: 7%" *ngIf="isCustomerEditable" (click)="selectCustomer(customer); f.customerCreateForm.markAsPristine()">
           <button id="{{j}}-edit-btn" tabindex="0"  class="svg-container qm-transparent-btn" (click)="editCustomer(customer)" tabindex="-1"
           (keydown.enter)="editCustomer(customer)" (keydown.space)="editCustomer(customer)"
           (keydown.arrowright) = "onRightButttonPressedinInfo(j)"
@@ -23,10 +25,10 @@
             <span class="sr-only">{{ 'button.edit' | translate }}</span>
           </button>
       </td>
-     
-    </tr>  
-    
-    
+
+    </tr>
+
+
   </tbody>
   <tbody *ngIf="showNoResults()" class="tbody customer-not-found--feedback">
    <tr  class="customer-list">

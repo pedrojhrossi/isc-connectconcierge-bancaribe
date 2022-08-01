@@ -99,7 +99,7 @@ export class QmVisitCustomerCreateComponent implements OnInit {
           this.dobOrder.month = objArr.indexOf('MM');
           this.dobOrder.year = objArr.indexOf('YY');
         }
-        
+
       }
     );
     this.subscriptions.add(systemInfoDateSubscription);

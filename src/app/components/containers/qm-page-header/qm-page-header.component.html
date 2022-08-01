@@ -5,7 +5,7 @@
     (click)="QuickServeFocus()">{{'label.quick_create'| translate}}</a>
   <a *ngIf="isHome && isQuickArriveEnable" id="cardContentArriveLink" class="qm-content-links__link" href="javascript:;"
     (click)="QuickArriveFocus()">{{'label.quick_arrive'| translate}}</a>
-  <a *ngIf="isHome && (isCreateAppointment || isEditAppointment || isArriveAppointment || isCreateVisit)" id="actionPanelContentLink" href="javascript:;" class="qm-content-links__link" 
+  <a *ngIf="isHome && (isCreateAppointment || isEditAppointment || isArriveAppointment || isCreateVisit)" id="actionPanelContentLink" href="javascript:;" class="qm-content-links__link"
     (click)="MenuBarFocus()">{{'label.menubar' | translate}}</a>
 </div>
 <header class="qm-header" *ngIf="!isFlowOpen">
@@ -13,18 +13,19 @@
 </header>
 <header class="qm-header" dir="{{ userDirection$ | async }}" *ngIf="!isFlowOpen">
   <nav class="qm-header__left">
-    <span *ngIf="!isNative" href="/" class="qm-header__brand-logo-container">
+    <!-- PJHR -->
+    <a *ngIf="!isNative" href="/" class="qm-header__brand-logo-container">
       <span *ngIf="!isNative"
         class="qm-action-btn qm-action-btn--only-icon qm-header__home-btn">
         <i class="qm-action-btn__icon icon-home" aria-hidden="true"></i>
       </span>
       <img class="qm-header__brand-logo" [src]="brandLogoSrc" alt="" role="presentation" />
       <span class="sr-only">{{ 'label.home' | translate }}</span>
-    </span>
+    </a>
     <span class="qm-header__application-name">{{ 'label.application.name' | translate }}</span>
     <span class="qm-header__branch-name" *ngIf='showBranch && (isUserAccessApp$ | async)'>{{branchName}} </span>
-    <span class="qm-header__less-than-icon" *ngIf='showBranch && (isUserAccessApp$ | async)'> 
-    |  
+    <span class="qm-header__less-than-icon" *ngIf='showBranch && (isUserAccessApp$ | async)'>
+    |
       <!-- <i class=" caret-icon"
         [ngClass]="{'icon-caret-right':(userDirections === 'ltr' || userDirections === 'LTR'),'icon-caret-left':(userDirections === 'rtl' || userDirections === 'RTL')}"></i> -->
       </span>

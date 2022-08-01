@@ -65,4 +65,6 @@ export interface IUTTParameter {
     duplicateServices: boolean;
     maxAdults: number;
     maxChildren: number;
+    validateRFCNumber: boolean; //* PJHR
+    dateOfBirthSection: boolean; //* PJHR
   }

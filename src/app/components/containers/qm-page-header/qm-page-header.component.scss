@@ -101,7 +101,7 @@
     display: flex;
     flex: 1 0 auto;
     align-items: center;
-   
+
     @at-root [dir="rtl"] & {
       margin-left: 0;
     }
@@ -137,13 +137,13 @@
     text-overflow: ellipsis;
     max-width: 20vw;
 
-    @at-root [dir="rtl"] & { 
+    @at-root [dir="rtl"] & {
       margin-right: rem($standard-margin);
     }
-   @at-root [dir="ltr"] & { 
+   @at-root [dir="ltr"] & {
       margin-left: rem($standard-margin);
     }
-   
+
   }
 
   &__service-point-name {
@@ -154,10 +154,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 20vw;
-      @at-root [dir="rtl"] & { 
+      @at-root [dir="rtl"] & {
       margin-left: rem($standard-margin);
     }
-   @at-root [dir="ltr"] & { 
+   @at-root [dir="ltr"] & {
       margin-right: rem($standard-margin);
     }
   }
@@ -165,12 +165,12 @@
   &__less-than-icon{
     flex: 1 1 auto;
     color: $header-service-point-name-color;
-    margin: rem(0 $standard-margin/2 0 $standard-margin/2); 
+    margin: rem(0 $standard-margin/2 0 $standard-margin/2);
   }
 
   &__edit-link {
     flex: 1 1 auto;
-    
+
     text-decoration: underline;
     font-size: rem(16px);
   }
@@ -206,7 +206,7 @@
 }
 a:focus, button:focus{
   border:  solid #007bff 1px;
- 
+
 }
 .qm-transparent-btn:focus{
   color: #FFFFFF !important;
@@ -247,7 +247,7 @@ button:active,button:hover{
     overflow: visible;
     clip: auto;
   }
-  @at-root [dir="ltr"] { 
+  @at-root [dir="ltr"] {
     left: .5rem;
     right: auto;
     }
@@ -263,7 +263,7 @@ button:active,button:hover{
   }
 }
 
-@include qm-xs-lower  { 
+@include qm-xs-lower  {
   .qm-header__edit-link {
     margin: 5px;
     width: 38px;
@@ -275,12 +275,12 @@ button:active,button:hover{
     width: 80px;
   }
   .qm-header__branch-name  {
-  display: none;  
+  display: none;
   }
   .qm-header__less-than-icon {
-    display: none;  
+    display: none;
   }
   .qm-header__service-point-name {
-    display: none;  
+    display: none;
   }
 }

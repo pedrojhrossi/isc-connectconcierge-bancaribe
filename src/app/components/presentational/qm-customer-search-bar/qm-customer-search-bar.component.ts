@@ -39,7 +39,7 @@ export class QmCustomerSearchBarComponent implements OnInit {
     private servicePointSelectors:ServicePointSelectors,
     private util:Util,
     private userSelectors:UserSelectors
-  
+
   ) {
     this.userDirection$ = this.userSelectors.userDirection$;
     this.customers$ = this.CustomerSelectors.customer$;
@@ -47,7 +47,7 @@ export class QmCustomerSearchBarComponent implements OnInit {
     this.customerLoading$ = this.CustomerSelectors.customerLoading$;
     this.customerLoaded$ = this.CustomerSelectors.customerLoaded$
 
-   
+
    }
 
   ngOnInit() {
@@ -66,7 +66,7 @@ export class QmCustomerSearchBarComponent implements OnInit {
       (customerLoaded:boolean)=> (this.customerLoaded= customerLoaded)
     )
     const customerSubscription = this.customers$.subscribe(
-      (customers:ICustomer[])=>(this.customers=customers)  
+      (customers:ICustomer[])=>(this.customers=customers)
     )
     const searchTextSubscription = this.searchText$.subscribe(
       (searchText:string) => (this.searchText= searchText)
@@ -89,7 +89,7 @@ export class QmCustomerSearchBarComponent implements OnInit {
     this.subscriptions.unsubscribe();
   }
 
- 
+
   search(text:string){
     this.searchInput$.next(text);
   }

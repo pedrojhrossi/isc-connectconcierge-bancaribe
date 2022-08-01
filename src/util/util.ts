@@ -15,7 +15,7 @@ export class Util {
 
     constructor(private servicePointSelectors: ServicePointSelectors) {
         window['x'] = this.setSelectedApplicationTheme.bind(this);
-       
+
     }
 
     isBlockedErrorCode(errorCode) {
@@ -66,7 +66,7 @@ export class Util {
             let styles: any = getComputedStyle(document.documentElement);
             document.documentElement.style.setProperty('--app-theme', themeColor);
 
-            //IE fix 
+            //IE fix
             if (!(window["CSS"] && CSS.supports('color', 'var(--primary)'))) {
                 setTimeout(() => {
                     cssVars({
@@ -102,7 +102,7 @@ export class Util {
         //     })
         //     .unsubscribe();
         // }
-       
+
         // var phonePrefiForRegex;
         // if (this.countryCode !== '') {
         //   phonePrefiForRegex = this.countryCode.toString().replace('+', '\\\+');
@@ -114,7 +114,7 @@ export class Util {
         //     phoneValidators = phoneRegex;
         //   }
 
-        return /^\(?\+?\d?[-\s()s0-9]{6,}$/;
+        return /^((041)[2|4|6]$|(042)[4|6]$)?[0-9]{11}$/;
     }
 
     emailRegEx() {
@@ -124,9 +124,18 @@ export class Util {
     numberRegEx() {
         return /^[0-9]*$/;
     }
+    //* PJHR
+    // JLVO 18-1-19 || Se arma Expresion Regular para validar que los caracteres del RFC esten correctos
+    rfcRegEx(){
+      return /^([VvEePp]{1})([0-9]{6,8})$/;
+    }
+
+    rfcValidator(){
+      return Validators.pattern(this.rfcRegEx());
+    }
 
     phoneNoValidator() {
-        const phoneRegex = `\\(?\\+?\d?[-\s()0-9]{6,}$`
+        const phoneRegex = `^((041)[2|4|6]$|(042)[4|6]$)?[0-9]{11}$`
 
         if (this.countryCode == undefined ) {
             const uttSubscription = this.servicePointSelectors.uttParameters$
@@ -137,7 +146,7 @@ export class Util {
             })
             .unsubscribe();
         }
-       
+
         var phonePrefiForRegex;
         if (this.countryCode !== '') {
           phonePrefiForRegex = this.countryCode.toString().replace('+', '\\\+');
@@ -159,7 +168,7 @@ export class Util {
     numberValidator() {
         return Validators.pattern(this.numberRegEx());
     }
-  
+
     getLocaleDate(dateString: string) {
         var date = new Date(dateString);
         var timeOffset = date.getTimezoneOffset();

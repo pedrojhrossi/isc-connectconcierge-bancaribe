@@ -57,7 +57,7 @@ export class QmQuickServeComponent implements OnInit, OnDestroy {
 
     this.showToolTip =false;
     this.userDirection$ = this.userSelectors.userDirection$;
-    
+
     const servicePointSubscription = this.servicePointSelectors.openServicePoint$.subscribe((servicePoint) => this.selectedServicePoint = servicePoint);
     this.subscriptions.add(servicePointSubscription);
 
@@ -79,7 +79,7 @@ export class QmQuickServeComponent implements OnInit, OnDestroy {
       }
     );
     this.subscriptions.add(servicePointsSubscription);
-    
+
     const branchSubscription = this.branchSelectors.selectedBranch$.subscribe((branch) => this.selectedBranch = branch);
     this.subscriptions.add(branchSubscription);
 
@@ -152,7 +152,7 @@ export class QmQuickServeComponent implements OnInit, OnDestroy {
     }
   }
   onServiceSelect(selectedService: IService) {
-    
+
     this.showToolTip = false;
     if(this.selectedService === selectedService){
       this.selectedService = null;
@@ -167,7 +167,7 @@ export class QmQuickServeComponent implements OnInit, OnDestroy {
   onServe() {
     this.showToolTip = false;
     this.spService.quickServe(this.selectedBranch, this.selectedServicePoint, this.selectedService).subscribe((status: any) => {
-      if(status){       
+      if(status){
         this.translateService.get('quick_serve_toast').subscribe(v => {
           this.toastService.infoToast(this.selectedService.internalName + ' ' + v);
           this.selectedService = null;
@@ -211,7 +211,7 @@ export class QmQuickServeComponent implements OnInit, OnDestroy {
     }
   }
 
-  
+
 filterQueues(newFilter: string) {
   this.filterText = newFilter;
  }
@@ -232,43 +232,43 @@ filterQueues(newFilter: string) {
       // sort by name
       this.services = this.services.slice().sort((a, b) => {
 
-            
+
               // var nameA = a.name.toUpperCase(); // ignore upper and lowercase
               // var nameB = b.name.toUpperCase(); // ignore upper and lowercase
 
               var stateA = a.internalName.toUpperCase(); // ignore upper and lowercase
               var stateB = b.internalName.toUpperCase(); // ignore upper and lowercase
-             
+
               if (stateA < stateB) {
                 return 1;
               }
               // if (stateA > stateB ) {
               //   return -1;
-              // }          
+              // }
 
 
               // names must be equal
               return 0;
         })
     }
-  
+
   }
 
   showHideToolTip(){
     this.showToolTip = !this.showToolTip;
   }
   handleCheckBoxClick(){
-    
+
   }
 
   focusQmCheckbox(service){
-   this.focusQuickServeItem = service.id;    
+   this.focusQuickServeItem = service.id;
   }
-  
+
   focusOutQmCheckbox(){
-    this.focusQuickServeItem = null;    
+    this.focusQuickServeItem = null;
   }
-  
+
   MouseEnteredCheckbox(service) {
     this.hoveredService = service.id;
   }

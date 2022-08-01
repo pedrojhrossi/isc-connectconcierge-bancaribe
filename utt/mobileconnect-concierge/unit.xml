@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <!--
-    
+
     All modifications to this unit type must be added here.
- 
+
     The version number of the unit type template (utt) has the format X.Y.Z.n, for example 6.2.0.0, where:
     -   X.Y stands for the Orchestra version, e.g. 6.2, 6.1 etc. First version of an utt for Orchestra 6.2
         has version 6.2.0.0
@@ -14,7 +14,7 @@
     -   When several versions of Orchestra are updated with the same utt, the lowest version number should be used. If,
         for example, a new utt is added to version 6.0, 6.1 and 6.2 of Orchestra, it should have version number 6.0.0.0
         in all Orchestra versions.
- 
+
     Below is a table with examples of how versions should be set:
     | 6.0     | 6.1     | 6.2    | Fix                 |
     |=========|=========|========|=====================|
@@ -32,7 +32,7 @@
     |         |         | 6.2.0  | G (only 6.2)        |
     | 6.0.1   | 6.1.1   | 6.2.1  | H (6.0, 6.1 and 6.2)|
 
- 
+
     Version history in descending order:
     ====================================
     Version    Date         Comments                                                    Signature
@@ -71,37 +71,37 @@
     7.0.4.0   2019-02-14    Updated the utt icon                                        udaban
     =============================================================================================
     7.0.3.0   2019-01-29   Service Point Pool Transfer, User Pool Transfer,             nalhew
-                            Delete Visit, Delete Appointment has been renamed. 
+                            Delete Visit, Delete Appointment has been renamed.
     =============================================================================================
     7.0.2.0   2019-01-22   Notes,Appointment Fetch start (min),                         udaban
                             Appointment Fetch end (min), Fetch Appointments,
                             Queue view branch level to profile level
     =============================================================================================
     7.0.1.0   2018-11-27   Old Concierge utt file MobileConnectConcierge will be       dimper
-			                replaced by Concierge  
+			                replaced by Concierge
     =============================================================================================
-    
+
 -->
 
-<unit           name = "Concierge"
+<unit           name = "Concierge-Custom"
     frameworkVersion = "2"
-         unitVersion = "7.0.18"
+         unitVersion = "7.0.19"
                 type = "SERVICE_POINT"
       defaultNoUnits = "1"
           maxNoUnits = "1"
          description = "Settings for Mobile Connect Concierge">
-	  
+
 	<parameters>
         <parameter name = "unitId"
                    type = "UnitId"
-           defaultValue = "Concierge"
+           defaultValue = "Concierge-Custom"
                   label = "Unit id"
             description = "Unique id of the unit"
               sortOrder = "1"
              writeLevel = "profile"
               readLevel = "branch"
               privilege = "install:adminAdmin"/>
-              
+
         <parameter name = "privacyPolicy"
               sortOrder = "202"
                   label = "Privacy Policy"
@@ -117,7 +117,7 @@
                   label = "Single session"
             description = "Defines if more than one user can be logged in at the same Mobile Connect Concierge."
               privilege = "install:adminAdmin"/>
-              
+
         <parameter name = "autoClose"
               sortOrder = "200"
                    type = "Integer"
@@ -128,6 +128,24 @@
               privilege = "install:adminAdmin"
                  regexp = "^\d+$"
                    size = "4" />
+
+        <parameter name = "validateRFCNumber"
+                   type = "Boolean"
+           defaultValue = "true"
+                  label = "Validate RFC"
+            description = "Funcionalidad especifica para Banca, si se activa validara la CI o Documento de Identificación entre numeros y letras"
+              sortOrder = "203"
+             writeLevel = "profile"
+              privilege = "install:adminAdmin"/>
+        <parameter name = "dateOfBirthSection"
+                   type = "Boolean"
+           defaultValue = "false"
+                  label = "Date of Birth Section"
+            description = "Activa o desactiva la sección de fecha de nacimiento al crear una visita."
+              sortOrder = "204"
+             writeLevel = "profile"
+              privilege = "install:adminAdmin"/>
+
         <parameter name = "createAppointment"
               sortOrder = "300"
                    type = "Boolean"
@@ -190,7 +208,7 @@
                 <option label="Quick Create">create</option>
                 <option label="Quick Arrive">arrive</option>
             </options>
-        </parameter> 
+        </parameter>
         <parameter name = "queueView"
                    type = "Boolean"
            defaultValue = "true"
@@ -223,7 +241,7 @@
               sortOrder = "362"
              writeLevel = "profile"
               privilege = "install:adminAdmin"/>
-        
+
         <parameter name = "gapFromTime"
                    type = "Integer"
            defaultValue = "60"
@@ -461,7 +479,7 @@
             description = "Show/hide number of customers field in create appointment flow"
               sortOrder = "385"
              writeLevel = "profile"
-              privilege = "install:adminAdmin"/>  
+              privilege = "install:adminAdmin"/>
         <parameter name = "hideCustomerDetails"
                    type = "Boolean"
            defaultValue = "false"
@@ -469,7 +487,7 @@
             description = "Show/hide customer details in all flows"
               sortOrder = "385"
              writeLevel = "profile"
-              privilege = "install:adminAdmin"/>  
+              privilege = "install:adminAdmin"/>
 
         <parameter name = "servicewiseCustomers"
                    type = "Boolean"
@@ -497,7 +515,7 @@
              writeLevel = "profile"
               privilege = "install:adminAdmin"
                  regexp = "^(0?[1-9]|[1-9][0-9])$"
-                   size = "4" />    
+                   size = "4" />
         <parameter name = "maxChildren"
               sortOrder = "388"
                    type = "Integer"
@@ -507,7 +525,7 @@
              writeLevel = "profile"
               privilege = "install:adminAdmin"
                  regexp = "^\d+$"
-                   size = "4" />  
+                   size = "4" />
         <parameter name = "saveCustomerOption"
             description = "If you choose store customer in database, in the Create Visit flow, you will have the possibility to search for customers and customer data will be saved to the Central customer database. Note: For this option, a connection to Central is required. If you choose store customer on visit, in the Create Visit flow, customer data will be stored on the visit object."
               sortOrder = "389"
@@ -523,14 +541,14 @@
                 <option label="Store customer on visit">visit</option>
             </options>
         </parameter>
-        <parameter name = "quickServeServices" 
-                   type = "Service" 
+        <parameter name = "quickServeServices"
+                   type = "Service"
                   label = "Quick Serve / Quick Create Included services"
             description = "Services that shall appear in the Quick Serve / Quick Create list. If no service is selected all services will be listed. Note that for Quick Serve all services except those that hold delivered service or outcome will be listed."
          multiSelection = "true"
-              sortOrder = "390" 
-             writeLevel = "profile" 
-              readLevel = "profile" 
+              sortOrder = "390"
+             writeLevel = "profile"
+              readLevel = "profile"
               privilege = "install:adminAdmin"
               mandatory = "false">
         </parameter>
@@ -541,7 +559,7 @@
             description = "Only check if you want to report on appointment origins"
               sortOrder = "391"
              writeLevel = "profile"
-              privilege = "install:adminAdmin"/>   
+              privilege = "install:adminAdmin"/>
         <parameter name = "qcaCreateEnable"
                    type = "Boolean"
            defaultValue = "false"
@@ -549,7 +567,7 @@
             description = "Gives access to the Create QCA Appointemnt flow if user has correct access right."
               sortOrder = "392"
              writeLevel = "profile"
-              privilege = "install:adminAdmin"/> 
+              privilege = "install:adminAdmin"/>
         <parameter name = "qcaCreateUrl"
               sortOrder = "393"
                   label = "Create QCA Appointment URL"
@@ -565,7 +583,7 @@
             description = "Gives access to the Edit QCA Appointemnt flow if user has correct access right."
               sortOrder = "394"
              writeLevel = "profile"
-              privilege = "install:adminAdmin"/> 
+              privilege = "install:adminAdmin"/>
         <parameter name = "qcaEditUrl"
               sortOrder = "395"
                   label = "Edit QCA Appointment URL"
@@ -573,15 +591,15 @@
                    type = "String"
              writeLevel = "profile"
                  regexp = "(^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1})|^$|(^(?:[0-9]{1,3}\.){3}[0-9]{1,3})|(^(?:[0-9]{1,3}\.){3}[0-9]{1,3}\:[0-9]{1,5}$)"
-              privilege = "install:adminAdmin"/>     
+              privilege = "install:adminAdmin"/>
 
-              
+
         <parameter name = "unitName"
                    type = "UnitName"
                   label = "Unit name"
             description = "The way to generate unit names if this unit is more than one unit"
            defaultValue = "${unit:name} ${unit:index}"/>
-              
+
         <parameter name = "connectConciergeApp"
               sortOrder = "19999"
                    type = "Boolean"
@@ -615,7 +633,7 @@
             description = "making date of birth mandatory when booking appointments"
               sortOrder = "396"
              writeLevel = "profile"
-              privilege = "install:adminAdmin"/> 
+              privilege = "install:adminAdmin"/>
         <parameter name = "primaryResource"
                    type = "Boolean"
            defaultValue = "false"
@@ -623,7 +641,7 @@
             description = "If enabled, show Primary resource of the visit"
               sortOrder = "3"
              writeLevel = "branch"
-              privilege = "install:adminAdmin"/> 
+              privilege = "install:adminAdmin"/>
         <parameter name = "secondaryResource"
                    type = "Boolean"
            defaultValue = "false"
@@ -631,24 +649,24 @@
             description = "If enabled, show Secondary resource of the visit"
               sortOrder = "4"
              writeLevel = "branch"
-              privilege = "install:adminAdmin"/> 
- 		  
+              privilege = "install:adminAdmin"/>
+
 	</parameters>
-	
+
 	<devices>
         <device id="1" name="MobileConnectConcierge" type="SW_CONNECT_CONCIERGE" resources="EVENT_SCHEDULER,SERVICE_POINT,CFM_INFO">
             <parameters>
                 <parameter name="refreshInterval" type="Integer" description="The number of seconds between refreshes">30</parameter>
             </parameters>
-            
+
             <deviceEventHandlers>
                 <deviceEventHandler handlerType="GROOVY" name="SERVICEPOINT_AUTO_CLOSE"><![CDATA[
-            
+
                     import com.qmatic.qp.api.connectors.device.ServicePointDeviceResource
                     import com.qmatic.qp.api.device.DeviceEvent
                     import com.qmatic.qp.api.device.DeviceCommand
                     import com.qmatic.qp.api.device.DeviceUserEvent
-                    
+
                     ServicePointDeviceResource resource = device.getResource("SERVICE_POINT")
                     branchId = device.getBranchId()
                     userName = event.getParameter("USER_NAME")
@@ -660,7 +678,7 @@
                     else{
                         userName = device.getState("USERNAME")
                     }
-                    
+
                     deviceId = device.getId()
                     timerServicepointAutoClose = device.getState(stateParam)
                     eventTimer = event.getParameter("TIMER_SERVICEPOINT_AUTO_CLOSE")
@@ -678,30 +696,30 @@
                                 }
                                 endServicePointSessionEvent.setUnitId(device.getId())
                                 endServicePointSessionEvent.setEventName(event.getEventName())
-                    
+
                                 device.sendEvent(endServicePointSessionEvent)
-                    
+
                                 DeviceCommand servicepointAutoCloseTimerReset = new DeviceCommand(device.getId(), "SERVICEPOINT_AUTO_CLOSE_TIMER_RESET")
                                 if(isUserChanalEnable == true){
                                     servicepointAutoCloseTimerReset.setParameter("USER_NAME", userName)
                                 }
                                 device.executeCommand(servicepointAutoCloseTimerReset)
-                    
+
                             }
                             catch(ex){
                                 device.log("ERROR", "Logout fail & Unable to send SERVICEPOINT_AUTO_CLOSE event to mobile connect, errorLogout: " + e.getMessage() + " , error: " + ex.getMessage())
                             }
                         }
                     }
-                    
-                    
+
+
                 ]]></deviceEventHandler>
             </deviceEventHandlers>
             <deviceCommandHandlers>
                 <deviceCommandHandler handlerType="GROOVY" name="SERVICEPOINT_AUTO_CLOSE_TIMER_RESET"><![CDATA[
-                    
+
                     import com.qmatic.qp.api.device.DeviceEvent
-                    
+
                     userName = command.getParameter("USER_NAME")
                     stateParam = "TIMER_SERVICEPOINT_AUTO_CLOSE"
                     isUserChanalEnable = device.getState("IS_USER_CHANNEL")
@@ -717,19 +735,19 @@
                     e.setParameter("TIMER_SERVICEPOINT_AUTO_CLOSE", timerServicepointAutoClose)
                     e.setParameter("USER_NAME", userName)
                     device.setState(stateParam, timerServicepointAutoClose)
-                    
+
                 ]]></deviceCommandHandler>
             </deviceCommandHandlers>
         </device>
     </devices>
-    
+
     <unitEvents>
         <unitEvent name="USER_SESSION_END">
             <unitEventHandler type="GROOVY"><![CDATA[
                 import com.qmatic.qp.api.device.DeviceEvent
                 import com.qmatic.qp.api.device.DeviceUserEvent
                 import com.qmatic.qp.constants.QPConstants
-                
+
                 device = unit.getDevice("MobileConnectConcierge")
                 try {
                     userName = event.getParameter(QPConstants.PRM_USER_NAME)
@@ -746,7 +764,7 @@
                     endUserSessionEvent.setUnitId(device.getId())
                     endUserSessionEvent.setParameter("servicePointId", unit.getLogicId() )
                     device.sendEvent(endUserSessionEvent)
-                
+
                     timerServicepointAutoClose = device.getState(stateParam)
                     if(timerServicepointAutoClose) {
                         device.getResource("EVENT_SCHEDULER").remove(timerServicepointAutoClose)
@@ -754,31 +772,31 @@
                 }  catch (Throwable t) {
                     device.log("ERROR", "Unable to send USER_SESSION_END event to web terminal, error:" + t.getMessage())
                 }
-                
+
             ]]></unitEventHandler>
         </unitEvent>
         <unitEvent name="USER_SERVICE_POINT_SESSION_START">
             <unitEventHandler type="GROOVY"><![CDATA[
                 import com.qmatic.qp.api.device.DeviceEvent
-                
+
                 device = unit.getDevice("MobileConnectConcierge")
-                
+
                 user = event.getParameters().get("user")
                 device.setState("USERNAME", user)
-                
+
             ]]>
             </unitEventHandler>
         </unitEvent>
         <unitEvent name="USER_SERVICE_POINT_SESSION_END">
             <unitEventHandler type="GROOVY">
                 <![CDATA[
-                    
+
                     import com.qmatic.qp.api.device.DeviceEvent
                     import com.qmatic.qp.api.device.DeviceUserEvent
                     import com.qmatic.qp.constants.QPConstants
-                    
+
                     device = unit.getDevice("MobileConnectConcierge")
-                    
+
                     try {
                         userName = event.getParameter(QPConstants.PRM_USER_NAME)
                         stateParam = "TIMER_SERVICEPOINT_AUTO_CLOSE"
@@ -797,7 +815,7 @@
                         parameters = ["user": event.getParameters().get("userId"), "servicePointId": unit.getLogicId()]
                         endServicePointSessionEvent.setParameters(parameters)
                         device.sendEvent(endServicePointSessionEvent)
-                    
+
                         timerServicepointAutoClose = device.getState(stateParam)
                         if(timerServicepointAutoClose) {
                             device.getResource("EVENT_SCHEDULER").remove(timerServicepointAutoClose)
@@ -805,30 +823,30 @@
                     } catch (Throwable t) {
                         device.log("ERROR", "Unable to send USER_SERVICE_POINT_SESSION_END event to mobile connect concierge, error:" + t.getMessage())
                     }
-                    
+
                 ]]>
             </unitEventHandler>
         </unitEvent>
-        
+
         <unitEvent name="SERVICE_POINT_CLOSE">
             <unitEventHandler type="GROOVY"><![CDATA[
                 import com.qmatic.qp.api.device.DeviceEvent
                 import com.qmatic.qp.constants.QPConstants
-                
+
                 device = unit.getDevice("MobileConnectConcierge")
-                
+
                 userName = event.getParameter(QPConstants.PRM_USER_NAME)
                 stateParam = "TIMER_SERVICEPOINT_AUTO_CLOSE"
                 isUserChanalEnable = device.getState("IS_USER_CHANNEL")
                 if(isUserChanalEnable != null && isUserChanalEnable == true){
                     stateParam = "TIMER_SERVICEPOINT_AUTO_CLOSE_" + userName
                 }
-                
+
                 timerServicepointAutoClose = device.getState(stateParam)
                 if(timerServicepointAutoClose) {
                     device.getResource("EVENT_SCHEDULER").remove(timerServicepointAutoClose)
                 }
-                
+
             ]]>
             </unitEventHandler>
         </unitEvent>
@@ -839,7 +857,7 @@
                 import com.qmatic.qp.exception.QException
                 import com.qmatic.qp.api.device.DeviceUserEvent
                 import com.qmatic.qp.constants.QPConstants
-                
+
                 device = unit.getDevice("MobileConnectConcierge")
                 try {
                     DeviceEvent visitCreateEvent
@@ -865,7 +883,7 @@
                 catch (Throwable t) {
                     device.log("ERROR", "Unable to send VISIT_CREATE event to web terminal, error:" + t.getMessage())
                 }
-                
+
             ]]></unitEventHandler>
         </unitEvent>
         <unitEvent name="PUBLIC.QUEUE_VISITS_UPDATED">
@@ -878,7 +896,7 @@
                 import com.qmatic.qp.jiql.core.cfm.queue.QueueVisitsUpdatedEvent
                 import com.qmatic.qp.api.connectors.device.CFMInformationDeviceResource
                 import com.qmatic.qp.api.connectors.dto.Queue
-                
+
                 device = unit.getDevice("MobileConnectConcierge")
 
                 QueueVisitsUpdatedEvent queueVisitsUpdatedEvent = (QueueVisitsUpdatedEvent) event
@@ -894,7 +912,7 @@
                     waitingTime = fullVisit.getWaitingTime()
                 }
 
-                def queueObj = '{ \"id\" :' + queueId + ',' + 
+                def queueObj = '{ \"id\" :' + queueId + ',' +
                                  '\"customersWaiting\" :' + visitIds.length + ',' +
                                  '\"waitingTime\" :' + waitingTime + '}'
 
@@ -923,45 +941,45 @@
                 catch (Throwable t) {
                     device.log("ERROR", "Unable to send QUEUE_VISITS_UPDATED event to web terminal, error:" + t.getMessage())
                 }
-                
+
             ]]></unitEventHandler>
         </unitEvent>
         <unitEvent name="RESET_AUTO_CLOSE">
             <unitEventHandler type="GROOVY">
                 <![CDATA[
-                    
+
                     import com.qmatic.qp.api.device.DeviceEvent
                     import com.qmatic.qp.api.device.DeviceCommand
                     import com.qmatic.qp.constants.QPConstants
-                    
+
                     device = unit.getDevice("MobileConnectConcierge")
-                    
+
                     if(unit.getConfiguration().get("autoClose") > 0) {
                         userName = event.getParameter(QPConstants.PRM_USER_NAME)
                         DeviceCommand servicepointAutoCloseTimerReset = new DeviceCommand(device.getId(), "SERVICEPOINT_AUTO_CLOSE_TIMER_RESET")
                         servicepointAutoCloseTimerReset.setParameter("USER_NAME", userName)
                         device.executeCommand(servicepointAutoCloseTimerReset)
                     }
-                    
+
                 ]]>
             </unitEventHandler>
         </unitEvent>
         <unitEvent name="SET_CHANNEL_STATUS">
             <unitEventHandler type="GROOVY">
                 <![CDATA[
-                    
+
                     import com.qmatic.qp.api.device.DeviceEvent
-                    
+
                     device = unit.getDevice("MobileConnectConcierge")
                     isUserChannel = event.getParameter("isUserChannel")
                     device.setState("IS_USER_CHANNEL", isUserChannel)
-                    
+
                 ]]>
             </unitEventHandler>
         </unitEvent>
     </unitEvents>
-	
+
     <unitCommands>
     </unitCommands>
-	  
+
 </unit>

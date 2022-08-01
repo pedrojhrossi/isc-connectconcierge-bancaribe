@@ -1,11 +1,12 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription, timer } from 'rxjs';
 import { AutoClose } from '../../../../util/services/autoclose.service';
 import { UserSelectors, CustomerDispatchers, CustomerDataService, CustomerSelector, ServicePointSelectors, SystemInfoSelectors } from '../../../../store';
 import { FormGroup, FormControl, FormBuilder, FormArray, FormGroupDirective, Validators, AbstractControl, } from '@angular/forms';
 import { ICustomer } from '../../../../models/ICustomer';
-import { first } from '../../../../../node_modules/rxjs/operators';
+import { debounceTime, first } from '../../../../../node_modules/rxjs/operators';
 import { whiteSpaceValidator } from '../../../../util/custom-form-validators';
+import { servicePoint, restEndpoint, DataServiceError } from '../../../../store/services/data.service'; //* PJHR
 import { Util } from '../../../../util/util';
 import { NgOption } from '@ng-select/ng-select';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,6 +15,10 @@ import { IUTTParameter } from 'src/models/IUTTParameter';
 import { LanguageDispatchers, LanguageSelectors } from 'src/store/services/language';
 import { ILanguage } from 'src/models/ILanguage';
 import { FLOW_TYPE } from 'src/util/flow-state';
+import { HttpClient } from '@angular/common/http'; //* PJHR
+import { QmModalService } from '../qm-modal/qm-modal.service'; //* PJHR
+import { ToastService } from 'src/util/services/toast.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'qm-inputbox',
@@ -22,6 +27,7 @@ import { FLOW_TYPE } from 'src/util/flow-state';
 })
 export class QmInputboxComponent implements OnInit {
   @Input() flowType: FLOW_TYPE;
+  private REST_API_SERVER = `${servicePoint}`;
   customerCreateForm: FormGroup;
   countrycode: string;
   dobRequired: boolean;
@@ -37,6 +43,9 @@ export class QmInputboxComponent implements OnInit {
   controls: any;
   currentCustomer: ICustomer
   editMode: boolean;
+  validateRFC:boolean; //* PJHR
+  validateDateOfBirth:boolean; //* PJHR
+  validId:boolean;
   isExpanded = false;
   isLangExpanded = false;
   dateError = {
@@ -47,8 +56,10 @@ export class QmInputboxComponent implements OnInit {
   public dobOrder = { month: 0, day: 1, year: 2 };
   public languages: NgOption[] = [];
   uttParameters$: Observable<IUTTParameter>;
+  uttParameters: Observable<IUTTParameter>;
   languages$: Observable<ILanguage[]>;
   supportedLanguagesArray: ILanguage[];
+  debouncer: Subject<string> = new Subject(); //* PJHR
 
   @Output()
   onFlowNext: EventEmitter<any> = new EventEmitter();
@@ -80,6 +91,7 @@ export class QmInputboxComponent implements OnInit {
     'calendar.month.december'
   ];
 
+  createCustomer = false; //* PJHR
 
   public months: NgOption[];
 
@@ -89,19 +101,67 @@ export class QmInputboxComponent implements OnInit {
     private userSelectors: UserSelectors,
     private fb: FormBuilder,
     private customerDispatchers: CustomerDispatchers,
+    // private customerDataService:CustomerDataService, //* PJHR
+    private http: HttpClient, //* PJHR
+    private modalService: QmModalService, //* PJHR
     private customerSelectors: CustomerSelector,
     private util: Util,
     private translateService: TranslateService,
     public LanguageSelectors: LanguageSelectors,
     public languageDispatchers: LanguageDispatchers,
-    public systemInfoSelectors: SystemInfoSelectors
+    public systemInfoSelectors: SystemInfoSelectors,
+    private toastService: ToastService, //* PJHR
   ) {
     // this.editCustomer$ = this.customerSelectors.editCustomer$;
     this.userDirection$ = this.userSelectors.userDirection$;
     this.languages$ = this.LanguageSelectors.languages$;
   }
 
+  cardNumberChange(cardNumber){
+    if(this.createCustomer === false && cardNumber.value.length >= 8){
+      let rfcValidated = cardNumber.value.match(this.util.rfcRegEx())
+      const cardNumberUppercased = cardNumber.value.toUpperCase();
+
+      if(rfcValidated){
+        if(!this.editMode && this.currentCustomer) {
+          cardNumberUppercased === this.currentCustomer.properties.externalId.toUpperCase() ? this.validId = true : this.debouncer.next(cardNumberUppercased);
+        } else {
+          this.debouncer.next(cardNumberUppercased);
+        }
+      }
+
+    }
+  }
+
+  validateId(cardNumber: string) {
+    this.http.get(`${this.REST_API_SERVER}/customers;cardNumber=${encodeURIComponent(cardNumber)}`, {observe: 'response'})
+    .subscribe(resp => {
+        let dataLength = Object.keys(resp.body).length
+        let data = resp.body;
+        let matchNumber = 0;
+        if(dataLength !== 0){
+          Object.entries(data).forEach(customer => {
+            if (cardNumber === customer[1].properties.externalId.toUpperCase()) {
+              matchNumber++;
+            }
+          })
+          matchNumber > 0 ? this.validId = false : this.validId = true;
+          if (!this.validId) {
+            this.toastService.errorToast("ERROR: Cédula de identidad ya existe");
+          }
+        } else {
+          this.validId = true;
+        }
+    })
+  }
+
   ngOnInit() {
+
+    //* debouncer PJHR
+    this.debouncer.pipe(debounceTime(300)).subscribe((cardNumber)=>{
+      this.validateId(cardNumber);
+    } )
+
     // get country code
     const servicePointsSubscription = this.servicePointSelectors.uttParameters$.subscribe((params) => {
       if (params) {
@@ -148,6 +208,7 @@ export class QmInputboxComponent implements OnInit {
           firstName: this.currentCustomer.firstName,
           lastName: this.currentCustomer.lastName,
           phone: this.currentCustomer.properties.phoneNumber,
+          externalId:this.currentCustomer.properties.externalId, //* PJHR
           email: this.currentCustomer.properties.email,
           dateOfBirth: {
             month: this.date.month ? this.date.month : null,
@@ -156,12 +217,19 @@ export class QmInputboxComponent implements OnInit {
           },
           language: this.currentCustomer.properties.lang
         })
+
+        //* PJHR
+        if(!this.editMode && this.currentCustomer) {
+          this.validId = true;
+        }
+
       } else if ((this.customerCreateForm !== undefined) && !this.currentCustomer) {
 
         this.customerCreateForm.patchValue({
           firstName: '',
           lastName: '',
           phone: this.countrycode,
+          externalId: '',
           email: '',
           dateOfBirth: {
             month: null,
@@ -174,7 +242,18 @@ export class QmInputboxComponent implements OnInit {
     });
     this.subscriptions.add(CurrentcustomerSubscription);
 
-
+    //TODO UTT Parameters
+    //* PJHR
+    this.uttParameters = this.servicePointSelectors.uttParameters$;
+    const uttSubscription = this.uttParameters
+      .subscribe(uttParameters => {
+        if (uttParameters) {
+          this.validateRFC = uttParameters.validateRFCNumber;
+          this.validateDateOfBirth = uttParameters.dateOfBirthSection;
+        }
+      })
+      .unsubscribe();
+      this.subscriptions.add(uttSubscription);
 
     const editModeSubscription = this.customerSelectors.editCustomerMode$.subscribe((status) => {
       this.editMode = status;
@@ -189,12 +268,18 @@ export class QmInputboxComponent implements OnInit {
     let dayValidators = [Validators.maxLength(2), Validators.max(31), Validators.min(1), this.util.numberValidator()];
     let yearValidators = [Validators.maxLength(4), Validators.minLength(4), Validators.max(today.getFullYear()), Validators.min(today.getFullYear() - 125), this.util.numberValidator()];
     let monthValidators = [];
+    //* PJHR
+    let externalIdValidators = [];
+    // JLVO 18-1-19 || Si esta activo en el UTT, Se valida de longitud y RFC
+    if(this.validateRFC){
+     externalIdValidators = [this.util.rfcValidator(), Validators.required];
+   }
     if (this.dobRequired) {
       dayValidators.push(Validators.required);
       yearValidators.push(Validators.required);
       monthValidators.push(Validators.required);
     }
-    //subscribe customer List 
+    //subscribe customer List
     const customerSubscription = this.customerSelectors.customer$.subscribe((customer) => this.customers = customer);
     this.subscriptions.add(customerSubscription);
 
@@ -205,6 +290,7 @@ export class QmInputboxComponent implements OnInit {
       firstName: new FormControl('', Validators.required, whiteSpaceValidator),
       lastName: new FormControl('', Validators.required, whiteSpaceValidator),
       phone: new FormControl(this.countrycode, phoneValidators),
+      externalId: new FormControl('V', externalIdValidators),
       email: new FormControl('', emailValidators),
       dateOfBirth: this.fb.group(
         {
@@ -298,6 +384,7 @@ export class QmInputboxComponent implements OnInit {
         lastName: '',
         phone: this.countrycode,
         email: '',
+        externalId: '', //* PJHR
         dateOfBirth: {
           month: null,
           day: '',
@@ -312,6 +399,7 @@ export class QmInputboxComponent implements OnInit {
 
   public accept() {
     if (this.customerCreateForm.valid) {
+      this.createCustomer = true //* PJHR
       if (this.currentCustomer) {
         this.customerDispatchers.updateCustomer(this.preparedCustomer());
         this.customerDispatchers.selectCustomer(this.preparedCustomer());
@@ -323,7 +411,7 @@ export class QmInputboxComponent implements OnInit {
     this.customerCreateForm.markAsPristine()
   }
 
-  // When customer edit and do not chage (add btn) 
+  // When customer edit and do not chage (add btn)
   public next() {
     this.customerDispatchers.editCustomerMode(false);
     this.customerCreateForm.markAsPristine()
@@ -341,6 +429,8 @@ export class QmInputboxComponent implements OnInit {
         ? {
           phoneNumber: this.customerCreateForm.value.phone.trim(),
           email: this.customerCreateForm.value.email.trim(),
+          externalId: this.customerCreateForm.value.externalId.toUpperCase().trim(), //* PJHR
+          custom2: this.customerCreateForm.value.externalId.toUpperCase().trim(), //* PJHR
           dateOfBirth: this.getDateOfBirth(),
           lang: this.customerCreateForm.value.language,
         }
@@ -348,8 +438,15 @@ export class QmInputboxComponent implements OnInit {
           phoneNumber: this.customerCreateForm.value.phone.trim(),
           email: this.customerCreateForm.value.email.trim(),
           dateOfBirth: this.getDateOfBirth(),
+          externalId: this.customerCreateForm.value.externalId.toUpperCase().trim(), //* PJHR
+          custom2: this.customerCreateForm.value.externalId.toUpperCase().trim(), //* PJHR
         }
     };
+
+    //* PJHR
+    customerSave.cardNumber = customerSave.properties.externalId;
+    customerSave.properties.custom2 = customerSave.properties.externalId;
+
     return customerSave
   }
 
@@ -357,6 +454,14 @@ export class QmInputboxComponent implements OnInit {
   preparedCustomer(): ICustomer {
 
     if (this.currentCustomer) {
+      //* PJHR
+      if (this.currentCustomer.properties.externalId === null &&
+        this.currentCustomer.properties.externalId === undefined &&
+        this.currentCustomer.properties.externalId === ''){
+          const tmpNumber = this.currentCustomer.properties.externalId.substring(1,);
+      }
+      this.currentCustomer.properties.externalId = this.currentCustomer.properties.externalId.toUpperCase();
+      this.currentCustomer.properties.custom2 = this.currentCustomer.properties.externalId.toUpperCase();
       this.editCustomer = this.currentCustomer;
       const customerToSave: ICustomer = {
         ...this.editCustomer,
@@ -383,9 +488,10 @@ export class QmInputboxComponent implements OnInit {
   // Date of Birth validation
   isValidDOBEntered(control: FormGroup) {
     let errors = null;
-    if (control.value) {
+    //* PJHR
+    if (this.validateDateOfBirth) {
+      if (control.value) {
 
-    
       // invalid date check for leap year
       if (control.value.year && control.value.month && control.value.day) {
         const d = new Date(
@@ -414,7 +520,7 @@ export class QmInputboxComponent implements OnInit {
         errors = { ...errors, incompleteDob: true };
       }
     }
-    return errors;
+    return errors;}
   }
   // restric input feild of birth date and year to numbers
   restrictNumbers($event) {
@@ -492,6 +598,8 @@ export class QmInputboxComponent implements OnInit {
         this.currentCustomer.properties.phoneNumber != this.customerCreateForm.value.phone ||
         this.currentCustomer.properties.email != this.customerCreateForm.value.email ||
         (this.date.year && this.date.year != this.customerCreateForm.value.dateOfBirth.year) ||
+        (this.currentCustomer.properties.externalId != this.customerCreateForm.value.externalId ) || //* PJHR
+        (this.currentCustomer.properties.custom2 != this.customerCreateForm.value.externalId ) || //* PJHR
         (!this.date.year && this.customerCreateForm.value.dateOfBirth.year) ||
         (this.date.day && this.date.day != this.customerCreateForm.value.dateOfBirth.day) ||
         (!this.date.day && this.customerCreateForm.value.dateOfBirth.year) ||
@@ -511,6 +619,8 @@ export class QmInputboxComponent implements OnInit {
       firstName: this.currentCustomer.firstName,
       lastName: this.currentCustomer.lastName,
       phone: this.currentCustomer.properties.phoneNumber,
+      externalId: this.currentCustomer.properties.externalId, //* PJHR
+      custom2: this.currentCustomer.properties.externalId, //* PJHR
       email: this.currentCustomer.properties.email,
       dateOfBirth: {
         month: this.date.month ? this.date.month : null,
@@ -529,6 +639,7 @@ export class QmInputboxComponent implements OnInit {
       case "lastName": this.customerCreateForm.patchValue({ lastName: '' }); break;
       case "phone": this.customerCreateForm.patchValue({ phone: '' }); break;
       case "email": this.customerCreateForm.patchValue({ email: '' }); break;
+      case "externalId": this.customerCreateForm.patchValue({ externalId: '' }); break; //* PJHR
 
     }
   }

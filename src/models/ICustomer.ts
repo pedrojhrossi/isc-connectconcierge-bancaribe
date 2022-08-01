@@ -13,6 +13,8 @@ export interface ICustomer {
   name?: string;
   email?: string;
   phone?: string;
+  externalId?: string; //* PJHR
+  custom2?: string; //* PJHR
   identificationNumber?: string;
   cardNumber?: string;
   created?: string;
