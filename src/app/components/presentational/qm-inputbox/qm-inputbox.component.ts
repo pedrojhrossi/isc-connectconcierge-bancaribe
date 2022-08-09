@@ -56,7 +56,7 @@ export class QmInputboxComponent implements OnInit {
   public dobOrder = { month: 0, day: 1, year: 2 };
   public languages: NgOption[] = [];
   uttParameters$: Observable<IUTTParameter>;
-  uttParameters: Observable<IUTTParameter>;
+  uttParameters: Observable<IUTTParameter>; //* PJHR
   languages$: Observable<ILanguage[]>;
   supportedLanguagesArray: ILanguage[];
   debouncer: Subject<string> = new Subject(); //* PJHR
@@ -229,7 +229,7 @@ export class QmInputboxComponent implements OnInit {
           firstName: '',
           lastName: '',
           phone: this.countrycode,
-          externalId: '',
+          externalId: '', //* PJHR
           email: '',
           dateOfBirth: {
             month: null,

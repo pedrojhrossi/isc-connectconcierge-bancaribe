@@ -87,12 +87,12 @@ export class SPService implements OnDestroy {
             const error = new DataServiceError(err, null);
             if(error.errorCode ==='8042'){
               this.translateService.get('queue_full').subscribe(v => {
-                 this.toastService.errorToast(v); 
+                 this.toastService.errorToast(v);
               });
             }
             else if(error.errorCode == '0') {
               this.translateService.get('generic.error.notification').subscribe(v => {
-                this.toastService.errorToast(v); 
+                this.toastService.errorToast(v);
              });
             }
             else if (error.errorCode === '8096') {
@@ -100,10 +100,10 @@ export class SPService implements OnDestroy {
                 this.toastService.errorToast(`${errorMsgs['request_fail']} ${errorMsgs['messages.error.generic.with.context']}`);
              });
             }
-            
+
             this.errorHandler.handleError()
             return  empty();
-          
+
         }));
   }
 
@@ -176,12 +176,13 @@ export class SPService implements OnDestroy {
   }
 
   createVisit(branch: IBranch, selectedServicePoint: IServicePoint, services: IService[], notes: string, vipLevel: VIP_LEVEL, customer: ICustomer, sms: string, isTicketPrint: boolean, tempCustomer: ICustomer, notificationType: NOTIFICATION_TYPE) {
+
     var body = {
       "services": this.buildService(services),
       "customers": customer ? [customer.id] : [],
-      "parameters": this.buildParametersObject(sms, isTicketPrint, notes, vipLevel, tempCustomer, notificationType,null,null)
+      "parameters": this.buildParametersObject(sms, isTicketPrint, notes, vipLevel, customer, notificationType,null,null)
     }
-    
+
     return this.http
       .post(`${servicePoint}/branches/${branch.id}/servicePoints/${selectedServicePoint.id}/visit/create`, body)
       .pipe(
@@ -189,11 +190,11 @@ export class SPService implements OnDestroy {
       );
   }
 
-  arriveAppointment(branch: IBranch, selectedServicePoint: IServicePoint, 
+  arriveAppointment(branch: IBranch, selectedServicePoint: IServicePoint,
     services: IService[], notes: string, vipLevel: VIP_LEVEL, sms: string, isTicketPrint: boolean, notificationType: NOTIFICATION_TYPE, appointment: IAppointment) {
-    var selectedServicesWithPeopleServices = (appointment.properties.custom && JSON.parse(appointment.properties.custom).peopleServices) ? 
+    var selectedServicesWithPeopleServices = (appointment.properties.custom && JSON.parse(appointment.properties.custom).peopleServices) ?
     appointment.properties.custom && JSON.parse(appointment.properties.custom).peopleServices : null;
-    var numberOfCustomers = (appointment.properties.custom && JSON.parse(appointment.properties.custom).numberOfCustomers) ? 
+    var numberOfCustomers = (appointment.properties.custom && JSON.parse(appointment.properties.custom).numberOfCustomers) ?
     appointment.properties.custom && parseInt(JSON.parse(appointment.properties.custom).numberOfCustomers) : null;
 
     var body = {
@@ -208,12 +209,22 @@ export class SPService implements OnDestroy {
       );
   }
 
-  private buildParametersObject(sms: string, isTicketPrint: boolean, notes: string, vipLevel: VIP_LEVEL, 
+    validateNull(val){
+    let sw = false;
+    if(val !== null && val !== undefined && val !== ''){
+      sw = true;
+      return sw
+    }
+    return sw
+  }
+
+  private buildParametersObject(sms: string, isTicketPrint: boolean, notes: string, vipLevel: VIP_LEVEL,
     tempCustomer: ICustomer, notificationType: NOTIFICATION_TYPE, numberOfCustomers:number, peopleServices: string) {
     var params = {
       "notificationType": notificationType,
       "appId": "concierge",
-      "print": isTicketPrint ? "1" : "0"
+      "print": isTicketPrint ? "1" : "0",
+      "custom2": this.validateNull(tempCustomer.cardNumber) ? tempCustomer.cardNumber : tempCustomer.properties.externalId
     }
 
     if (sms && sms.length > 0) {
@@ -319,7 +330,7 @@ export class SPService implements OnDestroy {
   }
 
   private processVisitInfo(visit: Visit) {
- 
+
       visit.customerName = visit.parameterMap.customers;
       visit.serviceName = visit.currentVisitService.serviceExternalName;
       visit.waitingTimeStr = this.formatTimeHHMM(visit.waitingTime);

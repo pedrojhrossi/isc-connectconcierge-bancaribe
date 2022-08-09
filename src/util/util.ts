@@ -12,7 +12,8 @@ export class Util {
     public qrRelatedData: any;
     private _refreshUrl: string;
     countryCode: string = undefined;
-
+    identificationNumberRegEx: any;
+    phoneRegEx: any;
     constructor(private servicePointSelectors: ServicePointSelectors) {
         window['x'] = this.setSelectedApplicationTheme.bind(this);
 
@@ -114,7 +115,7 @@ export class Util {
         //     phoneValidators = phoneRegex;
         //   }
 
-        return /^((041)[2|4|6]$|(042)[4|6]$)?[0-9]{11}$/;
+        return /^(041[2|4|6]|042[4|6])\d{7}$/;
     }
 
     emailRegEx() {
@@ -127,7 +128,15 @@ export class Util {
     //* PJHR
     // JLVO 18-1-19 || Se arma Expresion Regular para validar que los caracteres del RFC esten correctos
     rfcRegEx(){
-      return /^([VvEePp]{1})([0-9]{6,8})$/;
+      const uttSubscription = this.servicePointSelectors.uttParameters$
+      .subscribe(uttParameters => {
+        if (uttParameters) {
+          this.identificationNumberRegEx = uttParameters.identificationNumberRegEx;
+        }
+      })
+      .unsubscribe();
+
+      return this.identificationNumberRegEx;
     }
 
     rfcValidator(){
@@ -135,29 +144,35 @@ export class Util {
     }
 
     phoneNoValidator() {
-        const phoneRegex = `^((041)[2|4|6]$|(042)[4|6]$)?[0-9]{11}$`
-
-        if (this.countryCode == undefined ) {
-            const uttSubscription = this.servicePointSelectors.uttParameters$
+        const uttSubscription = this.servicePointSelectors.uttParameters$
             .subscribe(uttParameters => {
               if (uttParameters) {
-                this.countryCode = uttParameters.countryCode;
+                this.phoneRegEx = uttParameters.phoneRegEx;
               }
             })
             .unsubscribe();
-        }
 
-        var phonePrefiForRegex;
-        if (this.countryCode !== '') {
-          phonePrefiForRegex = this.countryCode.toString().replace('+', '\\\+');
-        }
+        // if (this.countryCode == undefined ) {
+        //     const uttSubscription = this.servicePointSelectors.uttParameters$
+        //     .subscribe(uttParameters => {
+        //       if (uttParameters) {
+        //         this.countryCode = uttParameters.countryCode;
+        //       }
+        //     })
+        //     .unsubscribe();
+        // }
+
+        // var phonePrefiForRegex;
+        // if (this.countryCode !== '') {
+        //   phonePrefiForRegex = this.countryCode.toString().replace('+', '\\\+');
+        // }
         var phoneValidators;
-        if (phonePrefiForRegex) {
-          phoneValidators = [Validators.pattern( phoneRegex + '|^' + phonePrefiForRegex)];
-        } else {
-          phoneValidators = [Validators.pattern( phoneRegex)];
-        }
-
+        // if (phonePrefiForRegex) {
+        //   phoneValidators = [Validators.pattern( phoneRegex + '|^' + phonePrefiForRegex)];
+        // } else {
+          phoneValidators = [Validators.pattern( this.phoneRegEx )];
+        // }
+        console.log(phoneValidators);
         return phoneValidators;
     }
 

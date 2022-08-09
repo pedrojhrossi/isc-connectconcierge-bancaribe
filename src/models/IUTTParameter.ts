@@ -67,4 +67,6 @@ export interface IUTTParameter {
     maxChildren: number;
     validateRFCNumber: boolean; //* PJHR
     dateOfBirthSection: boolean; //* PJHR
+    identificationNumberRegEx: any; //* PJHR
+    phoneRegEx: any; //* PJHR
   }
