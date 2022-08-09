@@ -172,7 +172,6 @@ export class Util {
         // } else {
           phoneValidators = [Validators.pattern( this.phoneRegEx )];
         // }
-        console.log(phoneValidators);
         return phoneValidators;
     }
 
