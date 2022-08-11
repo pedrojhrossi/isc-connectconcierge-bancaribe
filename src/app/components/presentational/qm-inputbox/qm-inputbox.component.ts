@@ -118,7 +118,7 @@ export class QmInputboxComponent implements OnInit {
   }
 
   cardNumberChange(cardNumber){
-    if(this.createCustomer === false && cardNumber.value.length >= 8){
+    if(this.createCustomer === false && cardNumber.value.length >= 7){
       let rfcValidated = cardNumber.value.match(this.util.rfcRegEx())
       const cardNumberUppercased = cardNumber.value.toUpperCase();
 
