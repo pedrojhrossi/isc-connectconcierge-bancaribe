@@ -1,7 +1,5 @@
 export interface ICustomerProperty {
     phoneNumber?: string;
-    externalId?: string; //* PJHR
-    custom2?: string; //* PJHR
     email?: string;
     gender?: string;
     dateOfBirth?: string;
@@ -9,4 +7,8 @@ export interface ICustomerProperty {
     created?: string;
     lang?: string;
     customField5?: string;
+    externalId?: string; //* PJHR
+    custom2?: string; //* PJHR
+    custom4?: string;
+    custom5?: string;
   }
