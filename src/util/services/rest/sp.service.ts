@@ -166,6 +166,7 @@ export class SPService implements OnDestroy {
     const body = {
       'phoneNumber': tmpPhone,
       'primaryCustomerPhoneNumber': tmpPhone,
+      'custom4': tmpPhone,
     };
 
     return this.http
@@ -176,7 +177,6 @@ export class SPService implements OnDestroy {
   }
 
   createVisit(branch: IBranch, selectedServicePoint: IServicePoint, services: IService[], notes: string, vipLevel: VIP_LEVEL, customer: ICustomer, sms: string, isTicketPrint: boolean, tempCustomer: ICustomer, notificationType: NOTIFICATION_TYPE) {
-
     var body = {
       "services": this.buildService(services),
       "customers": customer ? [customer.id] : [],
@@ -224,7 +224,10 @@ export class SPService implements OnDestroy {
       "notificationType": notificationType,
       "appId": "concierge",
       "print": isTicketPrint ? "1" : "0",
-      "custom2": this.validateNull(tempCustomer.cardNumber) ? tempCustomer.cardNumber : tempCustomer.properties.externalId
+    }
+
+    if (tempCustomer) {
+        params["custom2"] = this.validateNull(tempCustomer.cardNumber) ? tempCustomer.cardNumber : tempCustomer.properties.externalId //* PJHR;
     }
 
     if (sms && sms.length > 0) {
@@ -245,23 +248,25 @@ export class SPService implements OnDestroy {
     if ((sms && sms.length === 0) || tempCustomer && tempCustomer.phone && tempCustomer.phone.length > 0) {
       params["phoneNumber"] = this.util.buildPhoneNumber(tempCustomer.phone);
       params["primaryCustomerPhoneNumber"] = this.util.buildPhoneNumber(tempCustomer.phone); // TEN-298+CONCI-933
+      params["custom4"] = this.util.buildPhoneNumber(tempCustomer.phone); // TEN-298+CONCI-933
     }
     if (tempCustomer && tempCustomer.email && tempCustomer.email.length > 0) {
       params["email"] = tempCustomer.email;
       params["primaryCustomerEmail"] = tempCustomer.email; // TEN-298+CONCI-933
+      params["custom5"] = tempCustomer.email; // TEN-298+CONCI-933
     }
     if (tempCustomer && ((tempCustomer.firstName && tempCustomer.firstName.length > 0) || (tempCustomer.lastName && tempCustomer.lastName.length > 0))) {
       params["customers"] = tempCustomer.firstName + " " + tempCustomer.lastName;
       // start: TEN-298+CONCI-933
       params["primaryCustomerFirstName"] = tempCustomer.firstName;
       params["primaryCustomerLastName"] = tempCustomer.lastName;
+      params["custom3"] = tempCustomer.firstName + ' ' + tempCustomer.lastName;
       // end
     }
 
     if (tempCustomer && tempCustomer.dob) {
       params["primaryCustomerDateOfBirth"] = new Date(tempCustomer.dob);
     }
-
     return params;
   }
 
